@@ -1,5 +1,5 @@
-package pdg.models.view;
+package pdg.models;
 
 public enum UserRole {
-    Admin, Employee
+    Admin, Buyer
 }

@@ -30,6 +30,11 @@ public class MainController extends BaseController {
     public final static String PROFILE_VIEW = "profile";
     public final static String NEW_GAME_VIEW = "new-game";
     public final static String LOG_IN_VIEW = "login";
+    public final static String PRODUCT_DETAILS_VIEW = "product-details";
+    public final static String PRODUCT_LIST_VIEW = "product-list";
+    public final static String USER_DETAILS_VIEW = "user-details";
+    public final static String USER_LIST_VIEW = "user-list";
+
 
     private static final String VIEW_PATH = "../views";
 
@@ -41,6 +46,7 @@ public class MainController extends BaseController {
 
     @FXML
     CheckMenuItem enMenuItem;
+
     @FXML
     CheckMenuItem alMenuItem;
 
@@ -61,16 +67,16 @@ public class MainController extends BaseController {
         FXMLLoader loader = new FXMLLoader();
         Parent node;
         switch (screen) {
-            case LEADERBOARD_VIEW:
-                loader.setLocation(getClass().getResource(viewPath(LEADERBOARD_VIEW)));
+            case PRODUCT_LIST_VIEW:
+                loader.setLocation(getClass().getResource(viewPath(PRODUCT_LIST_VIEW)));
                 node = loader.load();
                 break;
             case PROFILE_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(PROFILE_VIEW)));
                 node = loader.load();
                 break;
-            case NEW_GAME_VIEW:
-                loader.setLocation(getClass().getResource(viewPath(NEW_GAME_VIEW)));
+            case USER_LIST_VIEW:
+                loader.setLocation(getClass().getResource(viewPath(USER_LIST_VIEW)));
                 node = loader.load();
                 break;
             case LOG_IN_VIEW:
@@ -92,16 +98,16 @@ public class MainController extends BaseController {
         contentPane.getChildren().add(pane);
         VBox.setVgrow(pane, Priority.ALWAYS);
         switch (screen) {
-            case LEADERBOARD_VIEW:
+            case PRODUCT_LIST_VIEW:
+                contentPane.setAlignment(Pos.CENTER);
+                break;
+            case LOG_IN_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
             case PROFILE_VIEW:
                 contentPane.setAlignment(Pos.TOP_LEFT);
                 break;
-            case LOG_IN_VIEW:
-                contentPane.setAlignment(Pos.CENTER);
-                break;
-            case NEW_GAME_VIEW:
+            case USER_LIST_VIEW:
                 contentPane.setAlignment(Pos.TOP_CENTER);
                 break;
             default:
@@ -111,21 +117,30 @@ public class MainController extends BaseController {
         controller.loadLangTexts(langBundle);
 
     }
-
-    @FXML
-    private void onLeaderboardNavClick(ActionEvent event) {
-        try {
-            this.loadView(LEADERBOARD_VIEW);
-        } catch (Exception e) {
-
-        }
-    }
+//
+//    @FXML
+//    private void onProductsNavClick(ActionEvent event) {
+//        try {
+//            this.loadView(PRODUCT_LIST_VIEW);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @FXML
     private void onProfileNavClick(ActionEvent event) {
         try {
             this.loadView(PROFILE_VIEW);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onProductsNavClick(ActionEvent event){
+        try{
+            this.loadView(USER_LIST_VIEW);
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -169,16 +184,6 @@ public class MainController extends BaseController {
             ErrorPopupComponent.show(e.toString());
         }
     }
-
-    @FXML
-    private void onNewGameMenuClick(ActionEvent event) {
-        try {
-            this.loadView(NEW_GAME_VIEW);
-        } catch (Exception e) {
-
-        }
-    }
-
 
     @FXML
     private void onAboutClick(ActionEvent event) {

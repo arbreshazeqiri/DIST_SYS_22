@@ -39,13 +39,17 @@ public class User {
         this.numberOfWins = numberOfWins;
     }
 
+    public User(String username, String email, String password){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public User(String username) {
         this.username = username;
         this.turnScore = 0;
         this.totalScore = 0;
     }
-
 
     public String getUsername() {
         return username;

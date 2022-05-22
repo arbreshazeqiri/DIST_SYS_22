@@ -37,6 +37,7 @@ public class LoginController extends BaseController {
     @FXML
     private void onLoginButtonClick(ActionEvent event) {
         try {
+//            System.out.println(System.getProperty( "javafx.runtime.version"));
             if(username.getText().isBlank()==false && password.getText().isBlank()==false){
                 validateLogin(event);
             }
@@ -48,7 +49,7 @@ public class LoginController extends BaseController {
         }
     }
 
-        public void validateLogin(ActionEvent eventi){
+        public void validateLogin(ActionEvent event){
                 try
                 {
                     User user = UserRepository.find(username.getText());
@@ -62,10 +63,10 @@ public class LoginController extends BaseController {
                             loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
                             Parent root = loader.load();
                             MainController controller = loader.getController();
-                            controller.loadView(MainController.NEW_GAME_VIEW);
+                            controller.loadView(MainController.PROFILE_VIEW);
                             Scene scene = new Scene(root);
 
-                            Stage primaryStage = (Stage) ((Node) eventi.getSource()).getScene().getWindow();
+                            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             primaryStage.setScene(scene);
                             primaryStage.show();
                         }
@@ -80,7 +81,7 @@ public class LoginController extends BaseController {
                 }
                 catch (Exception ex)
                 {
-                    ErrorPopupComponent.show(ex.toString());
+                    ex.printStackTrace();
                 }
             }
 

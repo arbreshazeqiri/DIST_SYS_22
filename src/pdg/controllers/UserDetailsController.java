@@ -25,7 +25,7 @@ public class UserDetailsController extends ChildController {
     @FXML
     private TextField idField;
     @FXML
-    private TextField nameField;
+    private TextField usernameField;
     @FXML
     private TextField emailField;
     @FXML
@@ -51,25 +51,25 @@ public class UserDetailsController extends ChildController {
         originalModel = model;
         viewModel = new UserViewModel(model);
 
-        idField.setText(Integer.toString(viewModel.getId()));
-        nameField.setText(viewModel.getName());
+//        idField.setText(Integer.toString(viewModel.getId()));
+        usernameField.setText((String) viewModel.getUsername());
         emailField.setText(viewModel.getEmail());
-        roleCbo.getSelectionModel().select(viewModel.getUserRole() == UserRole.Admin ? "Admin" : "Employee");
-        activeChb.setSelected(viewModel.getActive());
+//        roleCbo.getSelectionModel().select(viewModel.getUserRole() == UserRole.Admin ? "Admin" : "Employee");
+//        activeChb.setSelected(viewModel.getActive());
 
-        nameField.textProperty().bindBidirectional(viewModel.nameProperty());
+        usernameField.textProperty().bindBidirectional(viewModel.usernameProperty());
         emailField.textProperty().bindBidirectional(viewModel.emailProperty());
         passwordField.textProperty().bindBidirectional(viewModel.passwordProperty());
         confirmPasswordField.textProperty().bindBidirectional(viewModel.confirmPasswordProperty());
-        roleCbo.setOnAction(e -> {
-            viewModel.setUserRole(roleCbo.getSelectionModel().getSelectedItem());
-        });
-        activeChb.setOnAction(e -> {
-            viewModel.setActive(activeChb.isSelected());
-        });
-
-        createdAtField.setText(DateHelper.toSqlFormat(viewModel.getCreatedAt()));
-        updatedAtField.setText(DateHelper.toSqlFormat(viewModel.getUpdatedAt()));
+//        roleCbo.setOnAction(e -> {
+//            viewModel.setUserRole(roleCbo.getSelectionModel().getSelectedItem());
+//        });
+//        activeChb.setOnAction(e -> {
+//            viewModel.setActive(activeChb.isSelected());
+//        });
+//
+//        createdAtField.setText(DateHelper.toSqlFormat(viewModel.getCreatedAt()));
+//        updatedAtField.setText(DateHelper.toSqlFormat(viewModel.getUpdatedAt()));
     }
 
     @FXML
@@ -77,7 +77,7 @@ public class UserDetailsController extends ChildController {
         try {
             parentController.loadView(MainController.USER_LIST_VIEW);
         } catch (Exception e) {
-            ErrorPopupComponent.show(e);
+            ErrorPopupComponent.show(String.valueOf(e));
         }
     }
 
@@ -92,7 +92,7 @@ public class UserDetailsController extends ChildController {
                     throw new Exception("Password too short!");
             }
 
-            if (model.getId() > 0) {
+            if (model.getUsername() != "") {
                 // update
                 if (Util.isEmpty(viewModel.getPassword())) {
                     model.setPassword(originalModel.getPassword());
@@ -121,7 +121,7 @@ public class UserDetailsController extends ChildController {
 
             parentController.loadView(MainController.USER_LIST_VIEW);
         } catch (Exception e) {
-            ErrorPopupComponent.show(e);
+            ErrorPopupComponent.show(String.valueOf(e));
         }
     }
 

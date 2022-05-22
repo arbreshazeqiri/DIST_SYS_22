@@ -24,9 +24,11 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="adaptive" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.28" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="jdk-17.0" level="project" />
+    <orderEntry type="library" name="javafx1" level="project" />
+    <orderEntry type="library" name="com" level="project" />
+    <orderEntry type="library" name="bin" level="project" />
   </component>
 </module>

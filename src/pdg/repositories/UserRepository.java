@@ -128,4 +128,7 @@ public class UserRepository {
                 username, fullname, email, password, salt, country, numberOfWins, score
         );
     }
+
+    public static void create(User model) {
+    }
 }

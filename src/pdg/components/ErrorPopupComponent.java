@@ -8,6 +8,7 @@ public class ErrorPopupComponent{
     public static void show(String message){
         show(message,"Error");
     }
+
     public static void  show(String message,String title){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

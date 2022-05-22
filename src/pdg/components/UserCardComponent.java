@@ -8,7 +8,7 @@ import pdg.controllers.partials.UserCardController;
 import pdg.models.User;
 
 public class UserCardComponent {
-    public Node getContent(User user, EventHandler<ActionEvent> editHandler, EventHandler<ActionEvent> deleteHandler, EventHandler<ActionEvent> activeHandler)
+    public Node getContent(User user, EventHandler<ActionEvent> editHandler, EventHandler<ActionEvent> deleteHandler)
             throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("../views/partials/user-card.fxml"));
@@ -19,7 +19,7 @@ public class UserCardComponent {
         controller.setUser(user);
         controller.setOnEditAction(editHandler);
         controller.setOnDeleteAction(deleteHandler);
-        controller.setOnActiveAction(activeHandler);
+//        controller.setOnActiveAction(activeHandler);
 
         return node;
     }
