@@ -8,15 +8,15 @@ public class Product {
     private String description;
     private String image;
     private Double price;
-    private Double qty;
+    private Integer qty;
     private Date createdAt;
     private Date updatedAt;
 
     public Product() {
-        this(-1, "", "", "", 0.0, 0.0, new Date(), new Date());
+        this(-1, "", "", "", 0.0, 0, new Date(), new Date());
     }
 
-    public Product(int id, String title, String description, String image, Double price, Double qty, Date createdAt,
+    public Product(int id, String title, String description, String image, Double price, Integer qty, Date createdAt,
                    Date updatedAt) {
         this.id = id;
         this.title = title;
@@ -64,11 +64,11 @@ public class Product {
         this.price = price;
     }
 
-    public Double getQty() {
+    public Integer getQty() {
         return qty;
     }
 
-    public void setQty(Double qty) {
+    public void setQty(Integer qty) {
         this.qty = qty;
     }
 

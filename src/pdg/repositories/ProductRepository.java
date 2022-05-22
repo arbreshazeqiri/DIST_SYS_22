@@ -100,7 +100,7 @@ public class ProductRepository {
         String description = res.getString("description");
         String image = res.getString("image");
         Double price = res.getDouble("price");
-        Double qty = res.getDouble("qty");
+        Integer qty = res.getInt("qty");
         Date createdAt = DateHelper.fromSql(res.getString("createdAt"));
         Date updatedAt = DateHelper.fromSql(res.getString("createdAt"));
         return new Product(id, title, description, image, price, qty, createdAt, updatedAt);

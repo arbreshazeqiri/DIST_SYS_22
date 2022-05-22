@@ -7,30 +7,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="260.0" spacing="10.0" styleClass="user-card" stylesheets="@../../resources/styles/app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdg.controllers.partials.UserCardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="260.0" spacing="10.0" styleClass="user-card" stylesheets="@../../resources/styles/app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdg.controllers.partials.ProductCardController">
     <children>
-          <VBox alignment="CENTER_LEFT" prefHeight="106.0" prefWidth="159.0" spacing="5.0">
+          <VBox alignment="CENTER_LEFT" prefHeight="191.0" prefWidth="238.0" spacing="5.0">
               <children>
-            <Label prefHeight="18.0" prefWidth="43.0" style="-fx-font-weight: bold;" text="15EUR" />
-                <StackPane alignment="CENTER_RIGHT" prefHeight="144.0" prefWidth="223.0">
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="priceLabel" prefHeight="18.0" prefWidth="105.0" style="-fx-font-weight: bold;" text="15EUR" GridPane.rowIndex="1" />
+                  <Label fx:id="stockLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="123.0" style="-fx-font-weight: bold; -fx-alignment: right;" text="STOK: 1" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+                <StackPane alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="220.0">
                     <children>
-                        <ImageView fitHeight="114.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="fotoja" fitHeight="244.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="8.0">
                             <image>
                                 <Image url="@../../resources/images/avatar.png" />
                             </image>
                      <StackPane.margin>
-                        <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                        <Insets />
                      </StackPane.margin>
                         </ImageView>
                     </children>
                 </StackPane>
-                  <Label fx:id="nameLabel" prefHeight="20.0" prefWidth="233.0" style="-fx-alignment: center; -fx-color: green;" text="Pershkrimi i fotos" wrapText="true">
+                  <Label fx:id="nameLabel" prefHeight="38.0" prefWidth="220.0" style="-fx-alignment: center; -fx-color: green;" text="Pershkrimi i fotos" translateY="20.0" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -42,12 +54,8 @@
                </font>
             </Label>
               </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
           </VBox>
-        <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" />
-        <GridPane alignment="CENTER" hgap="10.0" prefHeight="17.0" prefWidth="194.0">
+        <GridPane alignment="CENTER" prefHeight="17.0" prefWidth="194.0" translateY="25.0" VBox.vgrow="NEVER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -77,7 +85,7 @@
                </graphic></Button>
             </children>
          <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets />
          </VBox.margin>
         </GridPane>
     </children>

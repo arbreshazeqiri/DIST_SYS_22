@@ -1,7 +1,5 @@
 package pdg.controllers;
 
-import com.sun.tools.javac.Main;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,14 +23,10 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MainController extends BaseController {
-    public final static String LEADERBOARD_VIEW = "leaderboard";
     public final static String PROFILE_VIEW = "profile";
-    public final static String NEW_GAME_VIEW = "new-game";
     public final static String LOG_IN_VIEW = "login";
     public final static String PRODUCT_DETAILS_VIEW = "product-details";
     public final static String PRODUCT_LIST_VIEW = "product-list";
-    public final static String USER_DETAILS_VIEW = "user-details";
-    public final static String USER_LIST_VIEW = "user-list";
 
 
     private static final String VIEW_PATH = "../views";
@@ -75,10 +68,6 @@ public class MainController extends BaseController {
                 loader.setLocation(getClass().getResource(viewPath(PROFILE_VIEW)));
                 node = loader.load();
                 break;
-            case USER_LIST_VIEW:
-                loader.setLocation(getClass().getResource(viewPath(USER_LIST_VIEW)));
-                node = loader.load();
-                break;
             case LOG_IN_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(LOG_IN_VIEW)));
                 node = loader.load();
@@ -97,6 +86,7 @@ public class MainController extends BaseController {
         contentPane.getChildren().clear();
         contentPane.getChildren().add(pane);
         VBox.setVgrow(pane, Priority.ALWAYS);
+
         switch (screen) {
             case PRODUCT_LIST_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
@@ -106,9 +96,6 @@ public class MainController extends BaseController {
                 break;
             case PROFILE_VIEW:
                 contentPane.setAlignment(Pos.TOP_LEFT);
-                break;
-            case USER_LIST_VIEW:
-                contentPane.setAlignment(Pos.TOP_CENTER);
                 break;
             default:
                 throw new Exception("ERR_SCREEN_NOT_FOUND");
@@ -139,7 +126,7 @@ public class MainController extends BaseController {
     @FXML
     private void onProductsNavClick(ActionEvent event){
         try{
-            this.loadView(USER_LIST_VIEW);
+            this.loadView(PRODUCT_LIST_VIEW);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="600.0" spacing="15.0" style="-fx-background-color: linear-gradient(from 50% 50% to 100% 100%, #29695a, #33c2f8); -fx-border-color: transparent;" styleClass="form-wrapper" stylesheets="@../resources/styles/app.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdg.controllers.ProfileController">
+<VBox alignment="CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="600.0" spacing="15.0" style="-fx-background-color: linear-gradient(#f8c6e0, #cef8d5);; -fx-border-color: transparent;" styleClass="form-wrapper" stylesheets="@../resources/styles/app.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdg.controllers.ProfileController">
    <children>
-      <GridPane alignment="CENTER" hgap="15.0" prefWidth="300.0" style="-fx-background-color: whitesmoke; -fx-background-radius: 15; -fx-border-color: transparent; -fx-opacity: 0.9;" styleClass="form-wrapper" vgap="10.0">
+      <GridPane alignment="CENTER" hgap="15.0" prefWidth="300.0" style="-fx-background-color: whitesmoke; -fx-background-radius: 15; -fx-border-color: pink; -fx-opacity: 0.9;" styleClass="form-wrapper" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

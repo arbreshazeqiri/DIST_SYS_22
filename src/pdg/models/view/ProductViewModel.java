@@ -1,14 +1,8 @@
 package pdg.models.view;
 
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.*;
 
 import java.util.Date;
-
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import pdg.models.Product;
 import pdg.utils.DateHelper;
@@ -19,7 +13,7 @@ public class ProductViewModel {
     private StringProperty description;
     private StringProperty image;
     private DoubleProperty price;
-    private DoubleProperty qty;
+    private IntegerProperty qty;
     private StringProperty createdAt;
     private StringProperty updatedAt;
 
@@ -29,7 +23,7 @@ public class ProductViewModel {
         description = new SimpleStringProperty();
         image = new SimpleStringProperty();
         price = new SimpleDoubleProperty();
-        qty = new SimpleDoubleProperty();
+        qty = new SimpleIntegerProperty();
         createdAt = new SimpleStringProperty();
         updatedAt = new SimpleStringProperty();
     }
@@ -94,11 +88,11 @@ public class ProductViewModel {
         image.setValue(value);
     }
 
-    public DoubleProperty priceProperty() {
+    public Property priceProperty() {
         return price;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price.getValue();
     }
 
@@ -106,11 +100,11 @@ public class ProductViewModel {
         price.setValue(value);
     }
 
-    public DoubleProperty qtyProperty() {
+    public IntegerProperty qtyProperty() {
         return qty;
     }
 
-    public double getQty() {
+    public int getQty() {
         return qty.getValue();
     }
 

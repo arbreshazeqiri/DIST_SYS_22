@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import pdg.controllers.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdg.controllers.UserDetailsController">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" stylesheets="@../resources/styles/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdg.controllers.ProductDetailsController">
     <children>
         <HBox alignment="CENTER">
             <children>
@@ -32,9 +32,9 @@
                         <Label text="Identifier" />
                         <TextField fx:id="idField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                         <Label text="Name" GridPane.rowIndex="1" />
-                        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                         <Label text="Email" GridPane.rowIndex="2" />
-                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                         <Label text="Password" GridPane.rowIndex="3" />
                         <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                         <Label text="Confirm Password" GridPane.rowIndex="4" />
@@ -48,7 +48,7 @@
                         <Label text="Updated At" GridPane.rowIndex="8" />
                         <TextField fx:id="updatedAtField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancelClick" styleClass="btn-dark" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSaveClick" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false"  text="Save" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                     </children>
                 </GridPane>
             </children>
