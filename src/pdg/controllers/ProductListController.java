@@ -73,6 +73,7 @@ public class ProductListController extends ChildController {
             ErrorPopupComponent.show(String.valueOf(e));
         }
     }
+
 //
 //    private void removeUser(User user) {
 //        try {

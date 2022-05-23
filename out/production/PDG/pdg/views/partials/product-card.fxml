@@ -27,7 +27,7 @@
               </rowConstraints>
                <children>
                   <Label fx:id="priceLabel" prefHeight="18.0" prefWidth="105.0" style="-fx-font-weight: bold;" text="15EUR" GridPane.rowIndex="1" />
-                  <Label fx:id="stockLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="123.0" style="-fx-font-weight: bold; -fx-alignment: right;" text="STOK: 1" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="stockLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="123.0" style="-fx-font-weight: bold;" text="STOK: 1" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
                 <StackPane alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="220.0">
@@ -42,7 +42,7 @@
                         </ImageView>
                     </children>
                 </StackPane>
-                  <Label fx:id="nameLabel" prefHeight="38.0" prefWidth="220.0" style="-fx-alignment: center; -fx-color: green;" text="Pershkrimi i fotos" translateY="20.0" wrapText="true">
+                  <Label fx:id="nameLabel" prefHeight="38.0" prefWidth="220.0"  text="Pershkrimi i fotos" translateY="20.0" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -64,7 +64,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="editButton" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-max-width: 30px; -fx-alignment: center; -fx-background-color: white;" styleClass="btn-green" GridPane.hgrow="ALWAYS">
+                <Button fx:id="wishlistButton" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onWishlistButtonClick" prefHeight="30.0" prefWidth="30.0" style="-fx-max-width: 30px; -fx-alignment: center; -fx-background-color: white;" styleClass="btn-green" GridPane.hgrow="ALWAYS">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,7 +75,7 @@
                <GridPane.margin>
                   <Insets left="38.0" />
                </GridPane.margin></Button>
-                <Button fx:id="deleteButton" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                <Button fx:id="cartButton" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onCartButtonClick" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>

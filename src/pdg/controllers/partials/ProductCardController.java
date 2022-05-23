@@ -17,9 +17,9 @@ import pdg.models.Product;
 
 public class ProductCardController implements Initializable {
     @FXML
-    private Button deleteButton;
+    private Button cartButton;
     @FXML
-    private Button editButton;
+    private Button wishlistButton;
     @FXML
     private Label nameLabel;
     @FXML
@@ -48,12 +48,20 @@ public class ProductCardController implements Initializable {
         stockLabel.setText("STOCK: " + product.getQty().toString());
     }
 
-    public void setOnEditAction(EventHandler<ActionEvent> handler) {
-        this.editButton.setOnAction(handler);
+
+    public void setOnWishlistAction(EventHandler<ActionEvent> handler) {
+        this.cartButton.setOnAction(handler);
     }
 
-    public void setOnDeleteAction(EventHandler<ActionEvent> handler) {
-        this.deleteButton.setOnAction(handler);
+    public void setOnCartAction(EventHandler<ActionEvent> handler) {
+        this.cartButton.setOnAction(handler);
     }
 
+    public void onCartButtonClick(ActionEvent actionEvent) {
+
+    }
+
+    public void onWishlistButtonClick(ActionEvent actionEvent){
+
+    }
 }
