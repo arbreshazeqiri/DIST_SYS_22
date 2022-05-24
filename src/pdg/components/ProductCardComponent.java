@@ -17,8 +17,8 @@ public class ProductCardComponent {
 
         ProductCardController controller = loader.getController();
         controller.setProduct(product);
-        controller.setOnEditAction(editHandler);
-        controller.setOnDeleteAction(deleteHandler);
+//        controller.setOnEditAction(editHandler);
+//        controller.setOnDeleteAction(deleteHandler);
 //      controller.setOnActiveAction(activeHandler);
 
         return node;

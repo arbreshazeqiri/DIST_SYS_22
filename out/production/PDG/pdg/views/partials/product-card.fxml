@@ -42,7 +42,7 @@
                         </ImageView>
                     </children>
                 </StackPane>
-                  <Label fx:id="nameLabel" prefHeight="38.0" prefWidth="220.0"  text="Pershkrimi i fotos" translateY="20.0" wrapText="true">
+                  <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="220.0" text="Pershkrimi i fotos" translateY="20.0" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
