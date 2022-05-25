@@ -40,6 +40,16 @@ public class ProductRepository {
         return parseRes(res);
     }
 
+    public static Product findByAddress (String address) throws Exception {
+        PreparedStatement stmt = DbHelper.getConnection()
+                .prepareStatement("SELECT * FROM products WHERE image LIKE ? ORDER BY id ASC");
+        stmt.setString(1, address + '%');
+
+        ResultSet res = stmt.executeQuery();
+        Product list = new Product();
+        return list;
+    }
+
     public static List<Product> find(String text) throws Exception {
         PreparedStatement stmt = DbHelper.getConnection()
                 .prepareStatement("SELECT * FROM products WHERE title LIKE ? ORDER BY id ASC");

@@ -26,7 +26,9 @@ public class MainController extends BaseController {
     public final static String PROFILE_VIEW = "profile";
     public final static String LOG_IN_VIEW = "login";
     public final static String PRODUCT_DETAILS_VIEW = "product-details";
+    public final static String WISHLIST_PRODUCT_DETAILS_VIEW = "wishlist-product-details";
     public final static String PRODUCT_LIST_VIEW = "product-list";
+    public final static String WISHLIST_PRODUCT_LIST_VIEW = "wishlist-product-list";
 
 
     private static final String VIEW_PATH = "../views";
@@ -64,6 +66,10 @@ public class MainController extends BaseController {
                 loader.setLocation(getClass().getResource(viewPath(PRODUCT_LIST_VIEW)));
                 node = loader.load();
                 break;
+            case WISHLIST_PRODUCT_LIST_VIEW:
+                loader.setLocation((getClass().getResource(viewPath(WISHLIST_PRODUCT_LIST_VIEW))));
+                node = loader.load();
+                break;
             case PROFILE_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(PROFILE_VIEW)));
                 node = loader.load();
@@ -91,6 +97,9 @@ public class MainController extends BaseController {
             case PRODUCT_LIST_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
+            case WISHLIST_PRODUCT_LIST_VIEW:
+                contentPane.setAlignment(Pos.CENTER);
+                break;
             case LOG_IN_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
@@ -102,7 +111,6 @@ public class MainController extends BaseController {
         }
         ResourceBundle langBundle = getLangBundle();
         controller.loadLangTexts(langBundle);
-
     }
 //
 //    @FXML
@@ -177,6 +185,15 @@ public class MainController extends BaseController {
         try {
             new AboutComponent().showDialog();
         } catch (Exception e) {
+        }
+    }
+
+    @FXML
+    private void onWishlistBtnClick(ActionEvent event){
+        try{
+            this.loadView(WISHLIST_PRODUCT_LIST_VIEW);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

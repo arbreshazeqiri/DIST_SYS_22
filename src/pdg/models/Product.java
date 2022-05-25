@@ -1,5 +1,7 @@
 package pdg.models;
 
+import javafx.scene.image.Image;
+
 import java.util.Date;
 
 public class Product {
@@ -83,4 +85,5 @@ public class Product {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }

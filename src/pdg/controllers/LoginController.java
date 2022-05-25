@@ -63,7 +63,7 @@ public class LoginController extends BaseController {
                             loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
                             Parent root = loader.load();
                             MainController controller = loader.getController();
-                            controller.loadView(MainController.PRODUCT_LIST_VIEW);
+                            controller.loadView(MainController.PROFILE_VIEW);
                             Scene scene = new Scene(root);
 
                             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

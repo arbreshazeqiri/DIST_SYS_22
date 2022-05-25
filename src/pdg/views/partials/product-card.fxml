@@ -64,7 +64,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="wishlistButton" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onWishlistButtonClick" prefHeight="30.0" prefWidth="30.0" style="-fx-max-width: 30px; -fx-alignment: center; -fx-background-color: white;" styleClass="btn-green" GridPane.hgrow="ALWAYS">
+                <Button fx:id="wishlistButton" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-max-width: 30px; -fx-alignment: center; -fx-background-color: white;" styleClass="btn-green" GridPane.hgrow="ALWAYS">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>

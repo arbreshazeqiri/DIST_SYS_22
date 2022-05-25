@@ -84,8 +84,6 @@ public class UserRepository {
         Connection conn = DbHelper.getConnection();
         String query = "UPDATE user_account SET numberOfWins = ?, score = ? WHERE username = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, model.getNumberOfWins());
-        stmt.setInt(2, model.getScore());
         stmt.setString(3, model.getUsername());
 
 
@@ -102,6 +100,7 @@ public class UserRepository {
     }
 
     private static User parseRes(ResultSet res) throws Exception {
+        Integer id = res.getInt("id");
         String username = res.getString("username");
         String fullname = res.getString("fullname");
         String email = res.getString("email");
@@ -109,12 +108,12 @@ public class UserRepository {
         String salt = res.getString("salt");
         String country = res.getString("country");
 
-        return new User(
-                username, fullname, email, password, salt, country
+        return new User(id, username, fullname, email, password, salt, country
         );
     }
 
     private static User parseReslogin(ResultSet res) throws Exception {
+        Integer id = res.getInt("id");
         String username = res.getString("username");
         String fullname = res.getString("fullname");
         String email = res.getString("email");
@@ -124,8 +123,7 @@ public class UserRepository {
         int numberOfWins = res.getInt("numberOfWins");
         int score = res.getInt("score");
 
-        return new User(
-                username, fullname, email, password, salt, country, numberOfWins, score
+        return new User(id, username, fullname, email, password, salt, country, numberOfWins, score
         );
     }
 

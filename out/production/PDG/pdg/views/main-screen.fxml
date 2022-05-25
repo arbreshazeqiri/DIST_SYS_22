@@ -36,16 +36,32 @@
                                 <Font size="25.0" />
                             </font></Label>
                         <Region HBox.hgrow="ALWAYS" />
-                  <ImageView fx:id="heart" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/images/heart.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="bag" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/images/bag.png" />
-                     </image>
-                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#onWishlistBtnClick" style="-fx-background-color: -fx-dark-gray;">
+                     <graphic>
+                        <Label text="Wishlist">
+                           <graphic>
+                              <ImageView fx:id="heart" fitHeight="40.0" fitWidth="50.0" onMouseClicked="#onWishlistBtnClick" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/heart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" style="-fx-background-color: -fx-dark-gray;">
+                     <graphic>
+                        <Label text="Shopping cart">
+                           <graphic>
+                              <ImageView fx:id="bag" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/bag.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                     </graphic>
+                  </Button>
                         <SplitMenuButton fx:id="msLang" mnemonicParsing="false" text="Lang">
                             <items>
                                 <CheckMenuItem fx:id="enMenuItem" mnemonicParsing="false" onAction="#onEnMenuItemCLick" text="English" />

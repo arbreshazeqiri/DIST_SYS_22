@@ -3,8 +3,6 @@ package pdg.controllers;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
@@ -12,16 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import pdg.components.ErrorPopupComponent;
 import pdg.components.PaginationComponent;
-import pdg.components.ProductCardComponent;
-import pdg.models.Product;
-import pdg.models.User;
+import pdg.components.WishlistProductCardComponent;
 import pdg.models.Wishlist;
-import pdg.repositories.ProductRepository;
-import pdg.repositories.UserRepository;
 import pdg.repositories.WishlistRepository;
-import pdg.utils.SessionManager;
 
-public class ProductListController extends ChildController {
+public class WishlistProductController extends ChildController {
     private final int PAGE_SIZE = 10;
 
     private PaginationComponent paginationComponent;
@@ -35,49 +28,50 @@ public class ProductListController extends ChildController {
     public void initialize(URL url, ResourceBundle bundle) {
         super.initialize(url, bundle);
         try {
-            paginationComponent = new PaginationComponent(productCount(), PAGE_SIZE);
+            paginationComponent = new PaginationComponent(wishlistProductCount(), PAGE_SIZE);
             paginationComponent.render(paginationPane, (page) -> {
                 try {
-                    showProducts(page);
+                    showWishlistProducts(page);
                 } catch (Exception e) {
-                    ErrorPopupComponent.show(String.valueOf(e));
+                   e.printStackTrace();
                 }
             });
-
-            showProducts(0);
+            showWishlistProducts(0);
         } catch (Exception e) {
-            ErrorPopupComponent.show(String.valueOf(e));
+            e.printStackTrace();
         }
     }
 
-    private int productCount() throws Exception {
-        return ProductRepository.count();
+
+    private int wishlistProductCount() throws Exception {
+        return WishlistRepository.count();
     }
 
-    private void showProducts(int page) throws Exception {
+    private void showWishlistProducts(int page) throws Exception {
         productsPane.getChildren().clear();
-        List<Product> products = ProductRepository.getAll(PAGE_SIZE, page);
-        ProductCardComponent productCard = new ProductCardComponent();
-        for (Product product: products) {
-            productsPane.getChildren().add(productCard.getContent(product, e -> showProduct(product), e -> removeProduct(product)));
+        List<Wishlist> wishlists = WishlistRepository.getAll(PAGE_SIZE, page);
+        WishlistProductCardComponent wishlistProductCard = new WishlistProductCardComponent();
+        for (Wishlist wishlist: wishlists) {
+            productsPane.getChildren().add(wishlistProductCard.getContent(wishlist, e -> showWishlistProduct(wishlist), e -> removeWishlistProduct(wishlist)));
         }
     }
 
-    private void removeProduct(Product product) {
+
+    private void removeWishlistProduct(Wishlist wishlist) {
     }
 
-    private void showProduct(Product product) {
+    private void showWishlistProduct(Wishlist wishlist) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../views/" + MainController.PRODUCT_DETAILS_VIEW + ".fxml"));
+            loader.setLocation(getClass().getResource("../views/" + MainController.WISHLIST_PRODUCT_DETAILS_VIEW + ".fxml"));
 
             Pane pane = loader.load();
-            ProductDetailsController controller = loader.getController();
-            controller.setModel(product);
+            WishlistProductDetailsController controller = loader.getController();
+            controller.setModel(wishlist);
 
-            parentController.loadView(MainController.PRODUCT_DETAILS_VIEW, pane, controller);
+            parentController.loadView(MainController.WISHLIST_PRODUCT_DETAILS_VIEW, pane, controller);
         } catch (Exception e) {
-            ErrorPopupComponent.show(String.valueOf(e));
+            e.printStackTrace();
         }
     }
 
@@ -126,7 +120,6 @@ public class ProductListController extends ChildController {
 //            ErrorPopupComponent.show(e);
 //        }
 //    }
-
 
     @Override
     public void loadLangTexts(ResourceBundle langBundle) {

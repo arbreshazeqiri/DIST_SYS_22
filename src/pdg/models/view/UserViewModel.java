@@ -164,7 +164,7 @@ public class UserViewModel {
     }
 
     public User getModel() {
-        return new User((String) getUsername(), getEmail(), getPassword());
+        return new User(getId(), (String) getUsername(), getEmail(), getPassword());
     }
 
     public Object getUsername() {

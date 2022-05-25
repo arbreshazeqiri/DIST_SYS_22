@@ -1,6 +1,7 @@
 package pdg.models;
 
 public class User {
+    private Integer id;
     private String username;
     private String fullname;
     private String email;
@@ -13,7 +14,8 @@ public class User {
     private int score;
     private int numberOfWins;
 
-    public User(String username, String fullname, String email, String password, String salt, String country) {
+    public User(Integer id, String username, String fullname, String email, String password, String salt, String country) {
+        this.id = id;
         this.username = username;
         this.fullname = fullname;
         this.email = email;
@@ -26,7 +28,8 @@ public class User {
         this.numberOfWins = 0;
     }
 
-    public User(String username, String fullname, String email, String password, String salt, String country, int numberOfWins, int score) {
+    public User(Integer id, String username, String fullname, String email, String password, String salt, String country, int numberOfWins, int score) {
+        this.id = id;
         this.username = username;
         this.fullname = fullname;
         this.email = email;
@@ -39,7 +42,8 @@ public class User {
         this.numberOfWins = numberOfWins;
     }
 
-    public User(String username, String email, String password){
+    public User(Integer id, String username, String email, String password){
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -55,6 +59,9 @@ public class User {
         return username;
     }
 
+    public Integer getId() { return id;}
+
+    public void setId(Integer id) { this.id = id; }
 
     public String getFullName() {
         return fullname;
@@ -96,49 +103,4 @@ public class User {
         this.country = country;
     }
 
-    public int getTurnScore() {
-        return turnScore;
-    }
-
-    public void setTurnScore(int turnScore) {
-        this.turnScore = turnScore;
-    }
-
-    public int getTotalScore() {
-        return totalScore;
-    }
-
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
-    }
-
-
-    public void resetTurnScore() {
-        this.turnScore = 0;
-    }
-
-    public void changeTurnScore(int rollValue) {
-        this.turnScore += rollValue;
-    }
-
-    public void saveScore() {
-        this.totalScore += this.turnScore;
-        resetTurnScore();
-    }
-
-    public int getNumberOfWins() {
-        return numberOfWins;
-    }
-
-    public void incrementNumberOfWins() {
-        this.numberOfWins++;
-    }
-
-    public void addTotalScore(int add) {
-        this.score += add;
-    }
-
-    public int getScore() {
-        return this.score;
-    }
 }

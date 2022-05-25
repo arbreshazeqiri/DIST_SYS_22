@@ -156,4 +156,5 @@ public class ProductViewModel {
         return new Product(getId(), getTitle(), getDescription(), getImage(), getPrice(), getQty(), getCreatedAt(),
                 getUpdatedAt());
     }
+
 }

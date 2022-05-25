@@ -9,21 +9,21 @@ import pdg.controllers.partials.WishlistProductCardController;
 import pdg.models.Product;
 import pdg.models.Wishlist;
 
-public class ProductCardComponent {
-    public Node getContent(Product product, EventHandler<ActionEvent> editHandler, EventHandler<ActionEvent> deleteHandler)
+public class WishlistProductCardComponent {
+
+    public Node getContent(Wishlist wishlist, EventHandler<ActionEvent> editHandler, EventHandler<ActionEvent> deleteHandler)
             throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("../views/partials/product-card.fxml"));
+        loader.setLocation(this.getClass().getResource("../views/partials/wishlist-product-card.fxml"));
 
         Node node = loader.load();
 
-        ProductCardController controller = loader.getController();
-        controller.setProduct(product);
+        WishlistProductCardController controller = loader.getController();
+        controller.setWishlistProduct(wishlist);
 //        controller.setOnEditAction(editHandler);
 //        controller.setOnDeleteAction(deleteHandler);
 //      controller.setOnActiveAction(activeHandler);
 
         return node;
     }
-
 }

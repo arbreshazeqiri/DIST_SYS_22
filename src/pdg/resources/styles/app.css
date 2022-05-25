@@ -94,6 +94,10 @@
   -fx-background-color: -fx-color-orange;
 }
 
+.wishlistbtn{
+  -fx-background-color: -fx-color-lightgreen;
+}
+
 .button.btn-orange:hover, .button.btn-orange:active, .button.btn-orange:focus, .button.btn-orange:focused {
   -fx-background-color: -fx-color-orange-hover;
 }

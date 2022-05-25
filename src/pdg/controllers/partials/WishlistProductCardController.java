@@ -19,7 +19,7 @@ import pdg.repositories.WishlistRepository;
 import pdg.utils.SessionManager;
 
 
-public class ProductCardController implements Initializable {
+public class WishlistProductCardController implements Initializable {
     @FXML
     private Button cartButton;
     @FXML
@@ -38,7 +38,7 @@ public class ProductCardController implements Initializable {
     }
 
 
-//    @FXML
+    @FXML
 //    private void onWishlistButtonClick(ActionEvent event, Product product) {
 //        try {
 //            Wishlist wishlist = new Wishlist(SessionManager.user.getId(), product.getId());
@@ -49,26 +49,22 @@ public class ProductCardController implements Initializable {
 
     String address = "src/pdg/resources/images/";
 
-    public void setProduct(Product product){
-        nameLabel.setText(product.getDescription());
-        priceLabel.setText(product.getPrice().toString() + "€");
-        address = address.concat(product.getImage()).concat(".jpg");
-        File f = new File(address);
-        fotoja.setImage(new Image(f.toURI().toString()));
-        stockLabel.setText("STOCK: " + product.getQty().toString());
+    public void setWishlistProduct(Wishlist wishlist){
+            nameLabel.setText(String.valueOf(wishlist.getUserId()));
+            priceLabel.setText(String.valueOf(wishlist.getProductId()));
     }
 
-//
+
 //    public void setOnWishlistAction(EventHandler<ActionEvent> handler) {
 //        this.cartButton.setOnAction(handler);
 //    }
-
-    public void setOnCartAction(EventHandler<ActionEvent> handler) {
-        this.cartButton.setOnAction(handler);
-    }
-
-    public void onCartButtonClick(ActionEvent actionEvent) {
-
-    }
+//
+//    public void setOnCartAction(EventHandler<ActionEvent> handler) {
+//        this.cartButton.setOnAction(handler);
+//    }
+//
+//    public void onCartButtonClick(ActionEvent actionEvent) {
+//
+//    }
 
 }
