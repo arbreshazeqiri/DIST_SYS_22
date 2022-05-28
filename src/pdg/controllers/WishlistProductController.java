@@ -1,18 +1,16 @@
 package pdg.controllers;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import pdg.components.ErrorPopupComponent;
 import pdg.components.PaginationComponent;
-import pdg.components.WishlistProductCardComponent;
 import pdg.models.Wishlist;
 import pdg.repositories.WishlistRepository;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class WishlistProductController extends ChildController {
     private final int PAGE_SIZE = 10;
@@ -28,15 +26,15 @@ public class WishlistProductController extends ChildController {
     public void initialize(URL url, ResourceBundle bundle) {
         super.initialize(url, bundle);
         try {
-            paginationComponent = new PaginationComponent(wishlistProductCount(), PAGE_SIZE);
-            paginationComponent.render(paginationPane, (page) -> {
-                try {
-                    showWishlistProducts(page);
-                } catch (Exception e) {
-                   e.printStackTrace();
-                }
-            });
-            showWishlistProducts(0);
+//            paginationComponent = new PaginationComponent(wishlistProductCount(), PAGE_SIZE);
+//            paginationComponent.render(paginationPane, (page) -> {
+//                try {
+//                    showWishlistProducts(page);
+//                } catch (Exception e) {
+//                   e.printStackTrace();
+//                }
+//            });
+//            showWishlistProducts(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,14 +45,14 @@ public class WishlistProductController extends ChildController {
         return WishlistRepository.count();
     }
 
-    private void showWishlistProducts(int page) throws Exception {
-        productsPane.getChildren().clear();
-        List<Wishlist> wishlists = WishlistRepository.getAll(PAGE_SIZE, page);
-        WishlistProductCardComponent wishlistProductCard = new WishlistProductCardComponent();
-        for (Wishlist wishlist: wishlists) {
-            productsPane.getChildren().add(wishlistProductCard.getContent(wishlist, e -> showWishlistProduct(wishlist), e -> removeWishlistProduct(wishlist)));
-        }
-    }
+//    private void showWishlistProducts(int page) throws Exception {
+//        productsPane.getChildren().clear();
+//        List<Wishlist> wishlists = WishlistRepository.getAll(PAGE_SIZE, page);
+//        WishlistProductCardComponent wishlistProductCard = new WishlistProductCardComponent();
+//        for (Wishlist wishlist: wishlists) {
+//            productsPane.getChildren().add(wishlistProductCard.getContent(wishlist, e -> showWishlistProduct(wishlist), e -> removeWishlistProduct(wishlist)));
+//        }
+//    }
 
 
     private void removeWishlistProduct(Wishlist wishlist) {

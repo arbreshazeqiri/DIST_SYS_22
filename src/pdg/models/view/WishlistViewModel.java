@@ -1,13 +1,13 @@
 package pdg.models.view;
 
-import javafx.beans.property.*;
-
-import java.util.Date;
-
-import pdg.models.Product;
-import pdg.models.User;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import pdg.models.Wishlist;
 import pdg.utils.DateHelper;
+
+import java.util.Date;
 
 public class WishlistViewModel {
     private IntegerProperty id;
@@ -23,12 +23,12 @@ public class WishlistViewModel {
         createdAt = new SimpleStringProperty();
     }
 
-    public WishlistViewModel(Product model, User modeli) {
-        this();
-        this.setUserId(modeli.getId());
-        this.setProductId(model.getId());
-        this.setCreatedAt(model.getCreatedAt());
-    }
+//    public WishlistViewModel(Product model, User modeli) {
+//        this();
+//        this.setUserId(modeli.getId());
+//        this.setProductId(model.getId());
+//        this.setCreatedAt(model.getCreatedAt());
+//    }
 
 
     public WishlistViewModel(Wishlist model) {

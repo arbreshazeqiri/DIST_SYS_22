@@ -6,24 +6,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 import pdg.components.ErrorPopupComponent;
-import pdg.models.LangEnum;
 import pdg.models.User;
-import pdg.repositories.UserRepository;
-import pdg.utils.AppConfig;
-import pdg.utils.SecurityHelper;
 import pdg.utils.SessionManager;
 
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 
@@ -43,11 +40,9 @@ public class LoginController extends BaseController {
     @FXML
     private void onLoginButtonClick(ActionEvent event) {
         try {
-//            System.out.println(System.getProperty( "javafx.runtime.version"));
-            if(username.getText().isBlank()==false && password.getText().isBlank()==false){
+            if (username.getText().isBlank() == false && password.getText().isBlank() == false) {
                 validateLogin(event);
-            }
-            else {
+            } else {
                 loginMessageLabel.setText("Username or Password is empty!");
             }
         } catch (Exception e) {
@@ -55,83 +50,93 @@ public class LoginController extends BaseController {
         }
     }
 
-    public static void findUser(User user) {
+    public static Integer loginUser(String username, String password) {
         try {
             HttpClient client = HttpClient.newHttpClient();
-            String input = "{ \"username\":\"" + user.getUsername() + "\", \"fullname\":\"" + user.getFullName()
-                    + "\", \"email\":\"" + user.getEmail()+ "\", \"password\":\"" + user.getPassword() +
-                    "\", \"country\":\"" + user.getCountry() +  "\" }";
+            String input = "{ \"username\":\"" + username + "\", \"password\":\"" + password + "\" }";
+
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:3000/v1/auth/register"))
+                    .uri(URI.create("http://localhost:3000/v1/auth/login"))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(input))
                     .build();
 
-            HttpResponse<String> response = client.send(request,
-                    HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return response.statusCode();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-        public void validateLogin(ActionEvent event){
-                try
-                {
-                    User user = UserRepository.find(username.getText());
-
-
-
-                    if(user != null)
-                    {
-                        String hashedPassword = SecurityHelper.computeHash(password.getText(), user.getSalt());
-
-                        if (user.getPassword().equals(hashedPassword)) {
-                            FXMLLoader loader = new FXMLLoader();
-
-
-
-                            SessionManager.user = user;
-                            loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
-                            Parent root = loader.load();
-                            MainController controller = loader.getController();
-                            controller.loadView(MainController.PROFILE_VIEW);
-                            Scene scene = new Scene(root);
-
-                            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            primaryStage.setScene(scene);
-                            primaryStage.show();
-                        }
-                        else {
-                            loginMessageLabel.setText("Wrong credentials!");
-                        }
-                    }
-                    else
-                    {
-                        loginMessageLabel.setText("User doesn't exist. Sign up to continue.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.printStackTrace();
-                }
-            }
-
-        @FXML
-        private void onSignupButtonClick(ActionEvent event) {
-            try {
+    public void validateLogin(ActionEvent event) {
+        try {
+            if (loginUser(username.getText(), password.getText()) == 200) {
+                User user = findByUsername(username.getText());
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../views/signup.fxml"));
-                Pane root = loader.load();
-                SignupController controller = loader.getController();
-                controller.setView2(controller.SIGN_UP_VIEW);
-
+                SessionManager.user = user;
+                loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
+                Parent root = loader.load();
+                MainController controller = loader.getController();
+                controller.loadView(MainController.PROFILE_VIEW);
                 Scene scene = new Scene(root);
+
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setScene(scene);
                 primaryStage.show();
-            } catch (Exception e) {
-                ErrorPopupComponent.show(e.toString());
+            } else {
+                loginMessageLabel.setText("Wrong credentials!");
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static User findByUsername(String username) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:3000/v1/users/" + username))
+                .setHeader("Authorization", "Bearer " +
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjkyOTU3NjUyNGM5MzFmYjg5ZDlkZmYiLCJpYXQiOjE2NTM3NzM2ODYsImV4cCI6MTY1Mzc3NTQ4NiwidHlwZSI6ImFjY2VzcyJ9.oCuopSsPfLwprVAgvHrEMVmqVfkxqUb8FJDTcY9_KQc")
+                .build();
+
+        HttpResponse<String> response = client.send(request,
+                HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.body());
+        return parseReslogin(response.body());
+    }
+
+    private static User parseReslogin(String res) throws Exception {
+        System.out.println(res);
+        JSONObject myjson = new JSONObject(res);
+        System.out.println(myjson);
+        String id = myjson.getString("id");
+        String username = myjson.getString("username");
+        String fullname = myjson.getString("fullname");
+        String email = myjson.getString("email");
+        String country = myjson.getString("country");
+        return new User(id, username, null, fullname, email, country);
+    }
+
+
+    @FXML
+    private void onSignupButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../views/signup.fxml"));
+            Pane root = loader.load();
+            SignupController controller = loader.getController();
+            controller.setView2(controller.SIGN_UP_VIEW);
+
+            Scene scene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            ErrorPopupComponent.show(e.toString());
+        }
     }
 
     @FXML
@@ -146,19 +151,18 @@ public class LoginController extends BaseController {
     public void loadLangTexts(ResourceBundle langBundle) {
         String logInUsername = langBundle.getString("log_in_username");
         String logInPassword = langBundle.getString("log_in_password");
-        String logInButton= langBundle.getString("log_in_button");
+        String logInButton = langBundle.getString("log_in_button");
         String signUpButton = langBundle.getString("sign_up_button");
-try {
-    username.setPromptText(logInUsername);
-    password.setPromptText(logInPassword);
-    loginButt.setText(logInButton);
-    signUpButt.setText(signUpButton);
-}
-catch(Exception e){
-    e.printStackTrace();
-}
+        try {
+            username.setPromptText(logInUsername);
+            password.setPromptText(logInPassword);
+            loginButt.setText(logInButton);
+            signUpButt.setText(signUpButton);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        if(this.childController != null){
+        if (this.childController != null) {
             this.childController.loadLangTexts(langBundle);
         }
     }

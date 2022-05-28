@@ -32,5 +32,9 @@
     <orderEntry type="library" name="bin" level="project" />
     <orderEntry type="library" name="apache-maven-3.8" level="project" />
     <orderEntry type="library" name="apache-log4j-2.17" level="project" />
+    <orderEntry type="library" name="java-json.jar" level="project" />
+    <orderEntry type="library" name="java-json.jar1" level="project" />
+    <orderEntry type="library" name="jar_files" level="project" />
+    <orderEntry type="library" name="json-20220320" level="project" />
   </component>
 </module>

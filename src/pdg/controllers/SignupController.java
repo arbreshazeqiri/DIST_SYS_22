@@ -16,20 +16,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.User;
-import pdg.repositories.UserRepository;
 import pdg.utils.SecurityHelper;
 import pdg.utils.SessionManager;
 
-import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -91,11 +86,12 @@ public class SignupController extends ChildController {
         try {
             if (!usernameField.getText().isBlank() && !fullnameField.getText().isBlank() && !emailField.getText().isBlank() && !passwordField.getText().isBlank() && !confirmPasswordField.getText().isBlank() && !choiceBox.getSelectionModel().isEmpty()) {
                 if (passwordField.getText().equals(confirmPasswordField.getText())) {
-                    if (passwordField.getLength() > 5) {
+                    if (passwordField.getLength() > 7) {
+                        registerMessageLabel1.setText("");
                         emailValidation(event);
                         registerMessageLabel1.setText("");
                     } else {
-                        registerMessageLabel1.setText("Password must be at least 6 characters.");
+                        registerMessageLabel1.setText("Password must be at least 8 characters.");
                     }
                 } else {
                     registerMessageLabel1.setText("Passwords do not match.");
@@ -103,7 +99,6 @@ public class SignupController extends ChildController {
             } else {
                 registerMessageLabel.setText("All fields must be filled.");
             }
-//
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,13 +109,12 @@ public class SignupController extends ChildController {
         String hashedpassword = SecurityHelper.computeHash(passwordField.getText(), salt);
         try {
             User user = new User(usernameField.getText(), fullnameField.getText(), emailField.getText().toLowerCase(), hashedpassword, salt, choiceBox.getValue().toString());
-            System.out.println(insertUser(user));
             switch (insertUser(user)) {
                 case 409:
                     registerMessageLabel.setText("Email is already taken.");
                     emailField.requestFocus();
                     break;
-                case 406:
+                case 410:
                     registerMessageLabel.setText("Username is already taken.");
                     usernameField.requestFocus();
                     break;
@@ -128,6 +122,10 @@ public class SignupController extends ChildController {
                     registerMessageLabel.setText("Email pattern is incorrect.");
                     emailField.requestFocus();
                     break;
+                case 429:
+                    registerMessageLabel.setText("You've sent too many requests. Try again later.");
+                    break;
+                case 201:
                 default:
                     SessionManager.user = user;
                     showMessageDialog(null, "Registration: successful. Login with your new account!");
@@ -139,40 +137,10 @@ public class SignupController extends ChildController {
                     primaryStage.show();
                     break;
             }
-            ;
         } catch (Exception e) {
             ErrorPopupComponent.show(e.toString());
         }
-//                } else {
-//                    registerMessageLabel.setText("Username is already taken.");
-//                }
-//            } else {
-//                registerMessageLabel.setText("Email is already taken.");
-//            }
-//        } else {
-//            registerMessageLabel.setText("Email pattern is incorrect.");
-//            emailField.requestFocus();
-//        }
     }
-//
-//    public static void findByEmail(String imella) {
-//        try {
-//            HttpClient client = HttpClient.newHttpClient();
-//            String input = "{ \"username\":\"" + user.getUsername() + "\", \"fullname\":\"" + user.getFullName()
-//                    + "\", \"email\":\"" + user.getEmail()+ "\", \"password\":\"" + user.getPassword() +
-//                    "\", \"country\":\"" + user.getCountry() +  "\" }";
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:3000/v1/auth/register"))
-//                    .header("Content-Type", "application/json")
-//                    .GET(HttpRequest.BodyPublishers.ofString(input))
-//                    .build();
-//
-//            HttpResponse<String> response = client.send(request,
-//                    HttpResponse.BodyHandlers.ofString());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static Integer insertUser(User user) {
         try {

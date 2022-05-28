@@ -1,15 +1,15 @@
 package pdg.repositories;
 
+import pdg.models.Wishlist;
+import pdg.utils.DateHelper;
+import pdg.utils.DbHelper;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import pdg.models.Wishlist;
-import pdg.utils.DateHelper;
-import pdg.utils.DbHelper;
-import pdg.utils.SessionManager;
 
 public class WishlistRepository {
     public static int count() throws Exception {
@@ -18,22 +18,22 @@ public class WishlistRepository {
         res.next();
         return res.getInt(1);
     }
-
-    public static List<Wishlist> getAll(int pageSize, int page) throws Exception {
-        PreparedStatement stmt = DbHelper.getConnection()
-                .prepareStatement("SELECT * FROM wishlist WHERE user_id = ? LIMIT ? OFFSET ?");
-        stmt.setInt(1, SessionManager.user.getId());
-//        System.out.println(SessionManager.user.getId());
-        stmt.setInt(2, pageSize);
-        stmt.setInt(3, page * pageSize);
-
-        ResultSet res = stmt.executeQuery();
-        List<Wishlist> list = new ArrayList<>();
-        while (res.next()) {
-            list.add(parseRes(res));
-        }
-        return list;
-    }
+//
+//    public static List<Wishlist> getAll(int pageSize, int page) throws Exception {
+//        PreparedStatement stmt = DbHelper.getConnection()
+//                .prepareStatement("SELECT * FROM wishlist WHERE user_id = ? LIMIT ? OFFSET ?");
+//        stmt.setInt(1, SessionManager.user.getId());
+////        System.out.println(SessionManager.user.getId());
+//        stmt.setInt(2, pageSize);
+//        stmt.setInt(3, page * pageSize);
+//
+//        ResultSet res = stmt.executeQuery();
+//        List<Wishlist> list = new ArrayList<>();
+//        while (res.next()) {
+//            list.add(parseRes(res));
+//        }
+//        return list;
+//    }
 
     public static Wishlist find(int id) throws Exception {
         PreparedStatement stmt = DbHelper.getConnection().prepareStatement("SELECT * FROM wishlist WHERE id = ? LIMIT 1");

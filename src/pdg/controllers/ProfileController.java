@@ -2,10 +2,10 @@ package pdg.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pdg.utils.SessionManager;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +21,7 @@ public class ProfileController extends ChildController {
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         usernameLabel.setText(SessionManager.user.getUsername());
-        fullnameLabel.setText(SessionManager.user.getFullName());
+        fullnameLabel.setText(SessionManager.user.getFullName().toUpperCase());
         emailLabel.setText(SessionManager.user.getEmail());
         File f;
         if(SessionManager.user.getCountry().equals("Kosovo")){
@@ -32,6 +32,8 @@ public class ProfileController extends ChildController {
         }
         countryImage.setImage(new Image(f.toURI().toString()));
     }
+
+
     private ChildController childController = null;
     @FXML
     private Label usernameLabel1;

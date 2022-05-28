@@ -1,7 +1,8 @@
 package pdg.models;
 
 public class User {
-    private Integer id;
+    private String products;
+    private String id;
     private String username;
     private String fullname;
     private String email;
@@ -10,14 +11,14 @@ public class User {
     private String country;
 
 
-    public User(String username, String fullname, String email, String password, String salt, String country) {
-        this.username = username;
-        this.fullname = fullname;
-        this.email = email;
-        this.password = password;
-        this.salt = salt;
-        this.country = country;
-    }
+//    public User(String username, String fullname, String email, String password, String salt, String country) {
+//        this.username = username;
+//        this.fullname = fullname;
+//        this.email = email;
+//        this.password = password;
+//        this.salt = salt;
+//        this.country = country;
+//    }
 
     public User() {
         this.username = "username";
@@ -28,32 +29,32 @@ public class User {
         this.country = "kosovo";
     }
 
-//    public User(String username, String fullname, String email, String password, String salt, String country) {
+    public User(String id, String username, String products, String fullname, String email, String country) {
+        this.id = id;
+        this.username = username;
+        this.fullname = fullname;
+        this.email = email;
+        this.products = products;
+        this.country = country;
+    }
+
+//    public User(String id, String username, String email, String password, String salt) {
+//        this.id = id;
 //        this.username = username;
-//        this.fullname = fullname;
 //        this.email = email;
 //        this.password = password;
 //        this.salt = salt;
-//        this.country = country;
 //    }
-//
-    public User(Integer id,String username, String email, String password, String salt) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.salt = salt;
-    }
 
     public User(String username) {
         this.username = username;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
