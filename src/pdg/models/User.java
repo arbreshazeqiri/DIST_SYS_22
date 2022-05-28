@@ -8,60 +8,58 @@ public class User {
     private String password;
     private String salt;
     private String country;
-    private int turnScore;
-    private boolean active;
-    private int totalScore;
-    private int score;
-    private int numberOfWins;
 
-    public User(Integer id, String username, String fullname, String email, String password, String salt, String country) {
-        this.id = id;
+
+    public User(String username, String fullname, String email, String password, String salt, String country) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
         this.salt = salt;
         this.country = country;
-        this.turnScore = 0;
-        this.totalScore = 0;
-        this.score = 0;
-        this.numberOfWins = 0;
     }
 
-    public User(Integer id, String username, String fullname, String email, String password, String salt, String country, int numberOfWins, int score) {
+    public User() {
+        this.username = "username";
+        this.fullname = "fullname";
+        this.email = "email@gmail.com";
+        this.password = "password123";
+        this.salt = "salt";
+        this.country = "kosovo";
+    }
+
+//    public User(String username, String fullname, String email, String password, String salt, String country) {
+//        this.username = username;
+//        this.fullname = fullname;
+//        this.email = email;
+//        this.password = password;
+//        this.salt = salt;
+//        this.country = country;
+//    }
+//
+    public User(Integer id,String username, String email, String password, String salt) {
         this.id = id;
         this.username = username;
-        this.fullname = fullname;
         this.email = email;
         this.password = password;
         this.salt = salt;
-        this.country = country;
-        this.turnScore = 0;
-        this.totalScore = 0;
-        this.score = score;
-        this.numberOfWins = numberOfWins;
-    }
-
-    public User(Integer id, String username, String email, String password){
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
     }
 
     public User(String username) {
         this.username = username;
-        this.turnScore = 0;
-        this.totalScore = 0;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
-
-    public Integer getId() { return id;}
-
-    public void setId(Integer id) { this.id = id; }
 
     public String getFullName() {
         return fullname;
@@ -87,14 +85,6 @@ public class User {
         this.password = password;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public String getCountry() {
         return country;
     }
@@ -103,4 +93,15 @@ public class User {
         this.country = country;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }

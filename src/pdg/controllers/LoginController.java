@@ -17,7 +17,11 @@ import pdg.utils.AppConfig;
 import pdg.utils.SecurityHelper;
 import pdg.utils.SessionManager;
 
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -34,6 +38,8 @@ public class LoginController extends BaseController {
     @FXML
     private PasswordField password;
 
+    private static String url = "http://localhost:3000/v1/auth/login";
+
     @FXML
     private void onLoginButtonClick(ActionEvent event) {
         try {
@@ -49,16 +55,41 @@ public class LoginController extends BaseController {
         }
     }
 
+    public static void findUser(User user) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            String input = "{ \"username\":\"" + user.getUsername() + "\", \"fullname\":\"" + user.getFullName()
+                    + "\", \"email\":\"" + user.getEmail()+ "\", \"password\":\"" + user.getPassword() +
+                    "\", \"country\":\"" + user.getCountry() +  "\" }";
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:3000/v1/auth/register"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(input))
+                    .build();
+
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
         public void validateLogin(ActionEvent event){
                 try
                 {
                     User user = UserRepository.find(username.getText());
 
+
+
                     if(user != null)
                     {
                         String hashedPassword = SecurityHelper.computeHash(password.getText(), user.getSalt());
+
                         if (user.getPassword().equals(hashedPassword)) {
                             FXMLLoader loader = new FXMLLoader();
+
+
+
                             SessionManager.user = user;
                             loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
                             Parent root = loader.load();

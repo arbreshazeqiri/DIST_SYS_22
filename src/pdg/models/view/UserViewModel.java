@@ -14,10 +14,6 @@ public class UserViewModel {
     private StringProperty email;
     private StringProperty password;
     private StringProperty confirmPassword;
-    private StringProperty userRole;
-    private BooleanProperty active;
-    private StringProperty createdAt;
-    private StringProperty updatedAt;
     private StringProperty username;
 
     public UserViewModel() {
@@ -95,77 +91,10 @@ public class UserViewModel {
         confirmPassword.setValue(value);
     }
 
-    public StringProperty userRoleProperty() {
-        return userRole;
-    }
 
-    public UserRole getUserRole() {
-        return userRole.getValue().equals("Admin") ? UserRole.Admin : UserRole.Buyer;
-    }
-
-    public void setUserRole(String value) {
-        userRole.setValue(value);
-    }
-
-    public void setUserRole(UserRole value) {
-        userRole.setValue(value == UserRole.Admin ? "Admin" : "Buyer");
-    }
-
-    public BooleanProperty activeProperty() {
-        return active;
-    }
-
-    public boolean getActive() {
-        return active.getValue();
-    }
-
-    public void setActive(boolean value) {
-        active.setValue(value);
-    }
-
-    public StringProperty createdAtProperty() {
-        return createdAt;
-    }
-
-    public Date getCreatedAt() {
-        try {
-            return DateHelper.fromSql(createdAt.getValue());
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public void setCreatedAt(String value) {
-        createdAt.setValue(value);
-    }
-
-    public void setCreatedAt(Date value) {
-        createdAt.setValue(DateHelper.toSqlFormat(value));
-    }
-
-    public StringProperty updatedAtProperty() {
-        return updatedAt;
-    }
-
-    public Date getUpdatedAt() {
-        try {
-            return DateHelper.fromSql(updatedAt.getValue());
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public void setUpdatedAt(String value) {
-        updatedAt.setValue(value);
-    }
-
-    public void setUpdatedAt(Date value) {
-        updatedAt.setValue(DateHelper.toSqlFormat(value));
-    }
-
-    public User getModel() {
-        return new User(getId(), (String) getUsername(), getEmail(), getPassword());
-    }
+//    public User getModel() {
+//        return new User(getId(), (String) getUsername(), getEmail(), getPassword());
+//    }
 
     public Object getUsername() {
         return username.getValue();
