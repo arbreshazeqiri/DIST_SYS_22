@@ -1,10 +1,5 @@
 package pdg.controllers;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
@@ -12,14 +7,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import pdg.components.ErrorPopupComponent;
 import pdg.components.PaginationComponent;
-import pdg.components.ProductCardComponent;
 import pdg.models.Product;
-import pdg.models.User;
-import pdg.models.Wishlist;
 import pdg.repositories.ProductRepository;
-import pdg.repositories.UserRepository;
-import pdg.repositories.WishlistRepository;
-import pdg.utils.SessionManager;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ProductListController extends ChildController {
     private final int PAGE_SIZE = 10;
@@ -34,34 +26,34 @@ public class ProductListController extends ChildController {
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         super.initialize(url, bundle);
-        try {
-            paginationComponent = new PaginationComponent(productCount(), PAGE_SIZE);
-            paginationComponent.render(paginationPane, (page) -> {
-                try {
-                    showProducts(page);
-                } catch (Exception e) {
-                    ErrorPopupComponent.show(String.valueOf(e));
-                }
-            });
-
-            showProducts(0);
-        } catch (Exception e) {
-            ErrorPopupComponent.show(String.valueOf(e));
-        }
+//        try {
+//            paginationComponent = new PaginationComponent(productCount(), PAGE_SIZE);
+//            paginationComponent.render(paginationPane, (page) -> {
+//                try {
+//                    showProducts(page);
+//                } catch (Exception e) {
+//                    ErrorPopupComponent.show(String.valueOf(e));
+//                }
+//            });
+//
+//            showProducts(0);
+//        } catch (Exception e) {
+//            ErrorPopupComponent.show(String.valueOf(e));
+//        }
     }
 
     private int productCount() throws Exception {
         return ProductRepository.count();
     }
 
-    private void showProducts(int page) throws Exception {
-        productsPane.getChildren().clear();
-        List<Product> products = ProductRepository.getAll(PAGE_SIZE, page);
-        ProductCardComponent productCard = new ProductCardComponent();
-        for (Product product: products) {
-            productsPane.getChildren().add(productCard.getContent(product, e -> showProduct(product), e -> removeProduct(product)));
-        }
-    }
+//    private void showProducts(int page) throws Exception {
+//        productsPane.getChildren().clear();
+//        List<Product> products = ProductRepository.getAll(PAGE_SIZE, page);
+//        ProductCardComponent productCard = new ProductCardComponent();
+//        for (Product product: products) {
+//            productsPane.getChildren().add(productCard.getContent(product, e -> showProduct(product), e -> removeProduct(product)));
+//        }
+//    }
 
     private void removeProduct(Product product) {
     }

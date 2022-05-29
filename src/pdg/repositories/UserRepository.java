@@ -1,4 +1,5 @@
 package pdg.repositories;
+
 import pdg.models.User;
 import pdg.utils.DbHelper;
 
@@ -9,8 +10,6 @@ import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserRepository {
 
@@ -36,15 +35,15 @@ public class UserRepository {
 //        }
 //        return list;
 //    }
-    public static User find(String username) throws Exception {
-        Connection conn = DbHelper.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user_account where username = ?");
-        stmt.setString(1, username);
-
-        ResultSet res = stmt.executeQuery();
-        if (!res.next()) return null;
-        return parseReslogin(res);
-    }
+//    public static User find(String username) throws Exception {
+//        Connection conn = DbHelper.getConnection();
+//        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user_account where username = ?");
+//        stmt.setString(1, username);
+//
+//        ResultSet res = stmt.executeQuery();
+//        if (!res.next()) return null;
+//        return parseReslogin(res);
+//    }
 
     public static boolean findByEmail(String email) throws Exception {
         Connection conn = DbHelper.getConnection();
@@ -138,17 +137,17 @@ public class UserRepository {
 //        );
 //    }
 
-    private static User parseReslogin(ResultSet res) throws Exception {
-        Integer id = res.getInt("id");
-        String username = res.getString("username");
-        String fullname = res.getString("fullname");
-        String email = res.getString("email");
-        String password = res.getString("password");
-        String salt = res.getString("salt");
-        String country = res.getString("country");
-        int numberOfWins = res.getInt("numberOfWins");
-        int score = res.getInt("score");
-
-        return new User(username, fullname, email, password, salt, country);
-    }
+//    private static User parseReslogin(ResultSet res) throws Exception {
+//        Integer id = res.getInt("id");
+//        String username = res.getString("username");
+//        String fullname = res.getString("fullname");
+//        String email = res.getString("email");
+//        String password = res.getString("password");
+//        String salt = res.getString("salt");
+//        String country = res.getString("country");
+//        int numberOfWins = res.getInt("numberOfWins");
+//        int score = res.getInt("score");
+//
+//        return new User(username, fullname, email, password, salt, country);
+//    }
 }

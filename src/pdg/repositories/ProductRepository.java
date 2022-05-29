@@ -1,13 +1,15 @@
 package pdg.repositories;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
-
 import pdg.models.Product;
 import pdg.utils.DateHelper;
 import pdg.utils.DbHelper;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ProductRepository {
     public static int count() throws Exception {
@@ -16,20 +18,28 @@ public class ProductRepository {
         res.next();
         return res.getInt(1);
     }
-
-    public static List<Product> getAll(int pageSize, int page) throws Exception {
-        PreparedStatement stmt = DbHelper.getConnection()
-                .prepareStatement("SELECT * FROM products ORDER BY id ASC LIMIT ? OFFSET ?");
-        stmt.setInt(1, pageSize);
-        stmt.setInt(2, page * pageSize);
-
-        ResultSet res = stmt.executeQuery();
-        List<Product> list = new ArrayList<>();
-        while (res.next()) {
-            list.add(parseRes(res));
-        }
-        return list;
-    }
+//
+//    public static List<Product> getAll(int pageSize, int page) throws Exception {
+//            HttpClient client = HttpClient.newHttpClient();
+//            HttpRequest request = HttpRequest.newBuilder()
+//                    .uri(URI.create("http://localhost:3000/v1/prod/" + username))
+//                    .setHeader("Authorization", "Bearer " +
+//                            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjkzMmJlNzM2NDk2ZTVkYTg2ZDFjZWMiLCJpYXQiOjE2NTM4MTIxOTksImV4cCI6MTY4NTM2OTc5OSwidHlwZSI6ImFjY2VzcyJ9._A6yqeEor5zRfurLr_nwk4jEEufRZkkjwVe9vJyqJSo")
+//                    .build();
+//
+//            HttpResponse<String> response = client.send(request,
+//                    HttpResponse.BodyHandlers.ofString());
+//            return parseReslogin(response.body());
+//        }
+//
+//
+//
+//        List<Product> list = new ArrayList<>();
+//        while (res.next()) {
+//            list.add(parseRes(res));
+//        }
+//        return list;
+//    }
 
     public static Product find(int id) throws Exception {
         PreparedStatement stmt = DbHelper.getConnection().prepareStatement("SELECT * FROM products WHERE id = ? LIMIT 1");
@@ -79,29 +89,6 @@ public class ProductRepository {
         ResultSet res = stmt.executeQuery();
         res.next();
         return parseRes(res);
-    }
-
-    public static Product update(Product model) throws Exception {
-        String query = "UPDATE products SET title = ?, description = ?, image = ?, price = ?, qty = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?";
-        PreparedStatement stmt = DbHelper.getConnection().prepareStatement(query);
-        stmt.setString(1, model.getTitle());
-        stmt.setString(2, model.getDescription());
-        stmt.setString(3, model.getImage());
-        stmt.setDouble(4, model.getPrice());
-        stmt.setDouble(5, model.getQty());
-        stmt.setInt(6, model.getId());
-
-        if (stmt.executeUpdate() != 1)
-            throw new Exception("ERR_NO_ROW_CHANGE");
-
-        return find(model.getId());
-    }
-
-    public static boolean remove(int id) throws Exception {
-        String query = "DELETE FROM products WHERE id = ?";
-        PreparedStatement stmt = DbHelper.getConnection().prepareStatement(query);
-        stmt.setInt(1, id);
-        return stmt.executeUpdate() == 1;
     }
 
     private static Product parseRes(ResultSet res) throws Exception {

@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.User;
@@ -50,30 +51,10 @@ public class LoginController extends BaseController {
         }
     }
 
-    public static Integer loginUser(String username, String password) {
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            String input = "{ \"username\":\"" + username + "\", \"password\":\"" + password + "\" }";
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:3000/v1/auth/login"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(input))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.statusCode();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public void validateLogin(ActionEvent event) {
         try {
-            if (loginUser(username.getText(), password.getText()) == 200) {
-                User user = findByUsername(username.getText());
+            User user = loginUser(username.getText(), password.getText());
+            if (user != null) {
                 FXMLLoader loader = new FXMLLoader();
                 SessionManager.user = user;
                 loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
@@ -93,31 +74,40 @@ public class LoginController extends BaseController {
         }
     }
 
-    public static User findByUsername(String username) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:3000/v1/users/" + username))
-                .setHeader("Authorization", "Bearer " +
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjkzMmJlNzM2NDk2ZTVkYTg2ZDFjZWMiLCJpYXQiOjE2NTM4MTIxOTksImV4cCI6MTY4NTM2OTc5OSwidHlwZSI6ImFjY2VzcyJ9._A6yqeEor5zRfurLr_nwk4jEEufRZkkjwVe9vJyqJSo")
-                .build();
+    public static User loginUser(String username, String password) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            String input = "{ \"username\":\"" + username + "\", \"password\":\"" + password + "\" }";
 
-        HttpResponse<String> response = client.send(request,
-                HttpResponse.BodyHandlers.ofString());
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:3000/v1/auth/login"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(input))
+                    .build();
 
-        System.out.println(response.body());
-        return parseReslogin(response.body());
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() == 200) {
+                return parseReslogin(response.body());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static User parseReslogin(String res) throws Exception {
-        System.out.println(res);
-        JSONObject myjson = new JSONObject(res);
-        System.out.println(myjson);
+        JSONObject myjson1 = new JSONObject(res);
+        JSONObject myjson = myjson1.getJSONObject("user");
         String id = myjson.getString("id");
         String username = myjson.getString("username");
         String fullname = myjson.getString("fullname");
         String email = myjson.getString("email");
         String country = myjson.getString("country");
-        return new User(id, username, null, fullname, email, country);
+        JSONArray wishList = myjson.getJSONArray("wishlist");
+        JSONArray cartList = myjson.getJSONArray("cart");
+        String wishlist = wishList.toString();
+        String cartlist = cartList.toString();
+        return new User(id, username, wishlist, cartlist, fullname, email, country);
     }
 
 

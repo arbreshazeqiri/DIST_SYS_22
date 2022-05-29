@@ -1,7 +1,8 @@
 package pdg.models;
 
 public class User {
-    private String products;
+    private String cart;
+    private String wishlist;
     private String id;
     private String username;
     private String fullname;
@@ -10,32 +11,14 @@ public class User {
     private String salt;
     private String country;
 
-
-//    public User(String username, String fullname, String email, String password, String salt, String country) {
-//        this.username = username;
-//        this.fullname = fullname;
-//        this.email = email;
-//        this.password = password;
-//        this.salt = salt;
-//        this.country = country;
-//    }
-
-    public User() {
-        this.username = "username";
-        this.fullname = "fullname";
-        this.email = "email@gmail.com";
-        this.password = "password123";
-        this.salt = "salt";
-        this.country = "kosovo";
-    }
-
-    public User(String id, String username, String products, String fullname, String email, String country) {
+    public User(String id, String username, String wishlist, String cart, String fullname, String email, String country) {
         this.id = id;
         this.username = username;
         this.fullname = fullname;
         this.email = email;
-        this.products = products;
+        this.wishlist = wishlist;
         this.country = country;
+        this.cart = cart;
     }
 
     public User(String username, String fullname, String email, String password, String country) {
