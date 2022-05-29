@@ -1,89 +1,52 @@
 package pdg.repositories;
 
-import pdg.models.Wishlist;
-import pdg.utils.DateHelper;
-import pdg.utils.DbHelper;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import pdg.models.Product;
+import pdg.utils.SessionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class WishlistRepository {
     public static int count() throws Exception {
-        Connection conn = DbHelper.getConnection();
-        ResultSet res = conn.prepareStatement("SELECT COUNT(*) FROM wishlist").executeQuery();
-        res.next();
-        return res.getInt(1);
-    }
-//
-//    public static List<Wishlist> getAll(int pageSize, int page) throws Exception {
-//        PreparedStatement stmt = DbHelper.getConnection()
-//                .prepareStatement("SELECT * FROM wishlist WHERE user_id = ? LIMIT ? OFFSET ?");
-//        stmt.setInt(1, SessionManager.user.getId());
-////        System.out.println(SessionManager.user.getId());
-//        stmt.setInt(2, pageSize);
-//        stmt.setInt(3, page * pageSize);
-//
-//        ResultSet res = stmt.executeQuery();
-//        List<Wishlist> list = new ArrayList<>();
-//        while (res.next()) {
-//            list.add(parseRes(res));
-//        }
-//        return list;
-//    }
-
-    public static Wishlist find(int id) throws Exception {
-        PreparedStatement stmt = DbHelper.getConnection().prepareStatement("SELECT * FROM wishlist WHERE id = ? LIMIT 1");
-        stmt.setInt(1, id);
-
-        ResultSet res = stmt.executeQuery();
-        if (!res.next()) return null;
-        return parseRes(res);
+        return getAll().size();
     }
 
-    public static List<Wishlist> find(String text) throws Exception {
-        PreparedStatement stmt = DbHelper.getConnection()
-                .prepareStatement("SELECT * FROM wishlist WHERE title LIKE ? ORDER BY id ASC");
-        stmt.setString(1, text + '%');
-
-        ResultSet res = stmt.executeQuery();
-        List<Wishlist> list = new ArrayList<>();
-        while (res.next()) {
-            list.add(parseRes(res));
+    public static List<Product> getAll() throws Exception {
+        JSONArray wishlist = SessionManager.user.getWishlist();
+        List<Product> list = new ArrayList<>();
+        for(int i=0; i<wishlist.length(); i++){
+            list.add(getProductById(wishlist.getString(i)));
         }
         return list;
     }
 
-    public static Wishlist create(Wishlist model) throws Exception {
-        String query = "INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)";
-        PreparedStatement stmt = DbHelper.getConnection().prepareStatement(query);
-        stmt.setInt(1, model.getUserId());
-        stmt.setInt(2, model.getProductId());
+    public static Product getProductById(String id) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:3000/v1/product/" + id))
+                .setHeader("Authorization", "Bearer " + SessionManager.token)
+                .build();
 
-        if (stmt.executeUpdate() != 1)
-            throw new Exception("ERR_NO_ROW_CHANGE");
-
-        stmt = DbHelper.getConnection().prepareStatement("SELECT * FROM wishlist ORDER BY createdAt DESC LIMIT 1");
-        ResultSet res = stmt.executeQuery();
-        res.next();
-        return parseRes(res);
+        HttpResponse<String> response = client.send(request,
+                HttpResponse.BodyHandlers.ofString());
+        return parseResLine(response.body());
     }
 
-    public static boolean remove(int id) throws Exception {
-        String query = "DELETE FROM products WHERE id = ?";
-        PreparedStatement stmt = DbHelper.getConnection().prepareStatement(query);
-        stmt.setInt(1, id);
-        return stmt.executeUpdate() == 1;
-    }
-
-    private static Wishlist parseRes(ResultSet res) throws Exception {
-        int id = res.getInt("id");
-        int userId = res.getInt("user_id");
-        int productId = res.getInt("product_id");
-        Date createdAt = DateHelper.fromSql(res.getString("created_date"));
-        return new Wishlist(userId, productId);
+    public static Product parseResLine(String res) {
+        JSONObject myjson = new JSONObject(res);
+        System.out.println(myjson);
+        String id = myjson.getString("id");
+        String title = myjson.getString("title");
+        String description = myjson.getString("description");
+        String image = myjson.getString("image");
+        String price = myjson.getString("price");
+        String qty = myjson.getString("quantity");
+        return new Product(id, title, description, image, price, qty);
     }
 }

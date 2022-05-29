@@ -1,16 +1,12 @@
 package pdg.components;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import pdg.controllers.partials.ProductCardController;
-import pdg.controllers.partials.WishlistProductCardController;
 import pdg.models.Product;
-import pdg.models.Wishlist;
 
 public class ProductCardComponent {
-    public Node getContent(Product product, EventHandler<ActionEvent> editHandler, EventHandler<ActionEvent> deleteHandler)
+    public Node getContent(Product product)
             throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("../views/partials/product-card.fxml"));

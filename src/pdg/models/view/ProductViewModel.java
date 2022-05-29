@@ -1,29 +1,30 @@
 package pdg.models.view;
 
-import javafx.beans.property.*;
-
-import java.util.Date;
-
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import pdg.models.Product;
 import pdg.utils.DateHelper;
 
+import java.util.Date;
+
 public class ProductViewModel {
-    private IntegerProperty id;
+    private StringProperty id;
     private StringProperty title;
     private StringProperty description;
     private StringProperty image;
-    private DoubleProperty price;
-    private IntegerProperty qty;
+    private StringProperty price;
+    private StringProperty qty;
     private StringProperty createdAt;
     private StringProperty updatedAt;
 
     public ProductViewModel() {
-        id = new SimpleIntegerProperty();
+        id = new SimpleStringProperty();
         title = new SimpleStringProperty();
         description = new SimpleStringProperty();
         image = new SimpleStringProperty();
-        price = new SimpleDoubleProperty();
-        qty = new SimpleIntegerProperty();
+        price = new SimpleStringProperty();
+        qty = new SimpleStringProperty();
         createdAt = new SimpleStringProperty();
         updatedAt = new SimpleStringProperty();
     }
@@ -36,19 +37,17 @@ public class ProductViewModel {
         this.setImage(model.getImage());
         this.setPrice(model.getPrice());
         this.setQty(model.getQty());
-        this.setCreatedAt(model.getCreatedAt());
-        this.setUpdatedAt(model.getUpdatedAt());
     }
 
-    public IntegerProperty idProperty() {
+    public StringProperty idProperty() {
         return id;
     }
 
-    public int getId() {
+    public String getId() {
         return id.getValue();
     }
 
-    public void setId(int value) {
+    public void setId(String value) {
         id.setValue(value);
     }
 
@@ -92,23 +91,23 @@ public class ProductViewModel {
         return price;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price.getValue();
     }
 
-    public void setPrice(double value) {
+    public void setPrice(String value) {
         price.setValue(value);
     }
 
-    public IntegerProperty qtyProperty() {
+    public StringProperty qtyProperty() {
         return qty;
     }
 
-    public int getQty() {
+    public String getQty() {
         return qty.getValue();
     }
 
-    public void setQty(double value) {
+    public void setQty(String value) {
         qty.setValue(value);
     }
 
@@ -153,8 +152,7 @@ public class ProductViewModel {
     }
 
     public Product getModel() {
-        return new Product(getId(), getTitle(), getDescription(), getImage(), getPrice(), getQty(), getCreatedAt(),
-                getUpdatedAt());
+        return new Product(getId(), getTitle(), getDescription(), getImage(), getPrice(), getQty());
     }
 
 }

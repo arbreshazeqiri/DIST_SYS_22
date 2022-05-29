@@ -1,8 +1,10 @@
 package pdg.models;
 
+import org.json.JSONArray;
+
 public class User {
-    private String cart;
-    private String wishlist;
+    private JSONArray cart;
+    private JSONArray wishlist;
     private String id;
     private String username;
     private String fullname;
@@ -11,7 +13,7 @@ public class User {
     private String salt;
     private String country;
 
-    public User(String id, String username, String wishlist, String cart, String fullname, String email, String country) {
+    public User(String id, String username, JSONArray wishlist, JSONArray cart, String fullname, String email, String country) {
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -60,6 +62,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public JSONArray getWishlist() { return wishlist; }
+
+    public JSONArray getCart() { return cart; }
 
     public String getPassword() {
         return password;

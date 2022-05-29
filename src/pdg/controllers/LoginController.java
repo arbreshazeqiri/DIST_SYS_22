@@ -105,9 +105,7 @@ public class LoginController extends BaseController {
         String country = myjson.getString("country");
         JSONArray wishList = myjson.getJSONArray("wishlist");
         JSONArray cartList = myjson.getJSONArray("cart");
-        String wishlist = wishList.toString();
-        String cartlist = cartList.toString();
-        return new User(id, username, wishlist, cartlist, fullname, email, country);
+        return new User(id, username, wishList, cartList, fullname, email, country);
     }
 
 

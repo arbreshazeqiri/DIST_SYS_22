@@ -23,6 +23,7 @@ public class ProfileController extends ChildController {
         usernameLabel.setText(SessionManager.user.getUsername());
         fullnameLabel.setText(SessionManager.user.getFullName().toUpperCase());
         emailLabel.setText(SessionManager.user.getEmail());
+        winsLabel.setText(String.valueOf(SessionManager.user.getWishlist().length()));
         File f;
         if(SessionManager.user.getCountry().equals("Kosovo")){
             f = new File("src/pdg/resources/images/Kosovo.png");

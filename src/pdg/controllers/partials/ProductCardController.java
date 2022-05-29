@@ -1,9 +1,5 @@
 package pdg.controllers.partials;
 
-import java.io.File;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,10 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pdg.models.Product;
-import pdg.models.Wishlist;
-import pdg.repositories.ProductRepository;
-import pdg.repositories.WishlistRepository;
-import pdg.utils.SessionManager;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 public class ProductCardController implements Initializable {

@@ -25,8 +25,6 @@ import java.util.ResourceBundle;
 public class MainController extends BaseController {
     public final static String PROFILE_VIEW = "profile";
     public final static String LOG_IN_VIEW = "login";
-    public final static String PRODUCT_DETAILS_VIEW = "product-details";
-    public final static String WISHLIST_PRODUCT_DETAILS_VIEW = "wishlist-product-details";
     public final static String PRODUCT_LIST_VIEW = "product-list";
     public final static String WISHLIST_PRODUCT_LIST_VIEW = "wishlist-product-list";
 

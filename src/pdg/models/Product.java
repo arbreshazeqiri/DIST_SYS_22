@@ -1,36 +1,23 @@
 package pdg.models;
 
-import javafx.scene.image.Image;
-
-import java.util.Date;
-
 public class Product {
-    private int id;
+    private String id;
     private String title;
     private String description;
     private String image;
-    private Double price;
-    private Integer qty;
-    private Date createdAt;
-    private Date updatedAt;
+    private String price;
+    private String qty;
 
-    public Product() {
-        this(-1, "", "", "", 0.0, 0, new Date(), new Date());
-    }
-
-    public Product(int id, String title, String description, String image, Double price, Integer qty, Date createdAt,
-                   Date updatedAt) {
+    public Product(String id, String title, String description, String image, String price, String qty) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
         this.price = price;
         this.qty = qty;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -58,32 +45,21 @@ public class Product {
         this.image = image;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Integer getQty() {
+    public String getQty() {
         return qty;
     }
 
-    public void setQty(Integer qty) {
+    public void setQty(String qty) {
         this.qty = qty;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
 }

@@ -5,13 +5,13 @@ import javafx.scene.layout.FlowPane;
 import pdg.components.ErrorPopupComponent;
 import pdg.components.ProductCardComponent;
 import pdg.models.Product;
-import pdg.repositories.ProductRepository;
+import pdg.repositories.WishlistRepository;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProductListController extends ChildController {
+public class WishListController extends ChildController {
 
     @FXML
     private FlowPane productsPane;
@@ -28,7 +28,7 @@ public class ProductListController extends ChildController {
 
     private void showProducts() throws Exception {
         productsPane.getChildren().clear();
-        List<Product> products = ProductRepository.getAll();
+        List<Product> products = WishlistRepository.getAll();
         ProductCardComponent productCard = new ProductCardComponent();
         for (Product product: products) {
             productsPane.getChildren().add(productCard.getContent(product));
