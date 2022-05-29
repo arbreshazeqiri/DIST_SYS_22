@@ -38,13 +38,13 @@ public class User {
         this.country = country;
     }
 
-//    public User(String id, String username, String email, String password, String salt) {
-//        this.id = id;
-//        this.username = username;
-//        this.email = email;
-//        this.password = password;
-//        this.salt = salt;
-//    }
+    public User(String username, String fullname, String email, String password, String country) {
+        this.fullname = fullname;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.country = country;
+    }
 
     public User(String username) {
         this.username = username;

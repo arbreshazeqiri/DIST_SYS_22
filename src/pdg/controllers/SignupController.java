@@ -16,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.User;
-import pdg.utils.SecurityHelper;
 import pdg.utils.SessionManager;
 
 import java.net.URI;
@@ -87,9 +86,14 @@ public class SignupController extends ChildController {
             if (!usernameField.getText().isBlank() && !fullnameField.getText().isBlank() && !emailField.getText().isBlank() && !passwordField.getText().isBlank() && !confirmPasswordField.getText().isBlank() && !choiceBox.getSelectionModel().isEmpty()) {
                 if (passwordField.getText().equals(confirmPasswordField.getText())) {
                     if (passwordField.getLength() > 7) {
+                        if(passwordField.getText().matches("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
                         registerMessageLabel1.setText("");
                         emailValidation(event);
                         registerMessageLabel1.setText("");
+                        }
+                        else {
+                            registerMessageLabel1.setText("Password must contain at least one number and one letter.");
+                        }
                     } else {
                         registerMessageLabel1.setText("Password must be at least 8 characters.");
                     }
@@ -105,10 +109,8 @@ public class SignupController extends ChildController {
     }
 
     public void emailValidation(ActionEvent eventi) throws Exception {
-        String salt = SecurityHelper.generateSalt();
-        String hashedpassword = SecurityHelper.computeHash(passwordField.getText(), salt);
         try {
-            User user = new User(usernameField.getText(), fullnameField.getText(), emailField.getText().toLowerCase(), hashedpassword, salt, choiceBox.getValue().toString());
+            User user = new User(usernameField.getText(), fullnameField.getText(), emailField.getText().toLowerCase(), passwordField.getText(), choiceBox.getValue().toString());
             switch (insertUser(user)) {
                 case 409:
                     registerMessageLabel.setText("Email is already taken.");
@@ -148,6 +150,7 @@ public class SignupController extends ChildController {
             String input = "{ \"username\":\"" + user.getUsername() + "\", \"fullname\":\"" + user.getFullName()
                     + "\", \"email\":\"" + user.getEmail() + "\", \"password\":\"" + user.getPassword() +
                     "\", \"country\":\"" + user.getCountry() + "\" }";
+
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:3000/v1/auth/register"))
                     .header("Content-Type", "application/json")

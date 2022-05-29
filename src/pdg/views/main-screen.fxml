@@ -94,7 +94,7 @@
                         </Menu>
                         <Menu fx:id="newGameButt" mnemonicParsing="false" text="Insert">
                             <items>
-                                <MenuItem fx:id="onNewGameButton" mnemonicParsing="false" onAction="#onNewGameMenuClick" text="Insert products">
+                                <MenuItem fx:id="onNewGameButton" mnemonicParsing="false" text="Insert products">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                     </accelerator>

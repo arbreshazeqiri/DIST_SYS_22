@@ -98,7 +98,7 @@ public class LoginController extends BaseController {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:3000/v1/users/" + username))
                 .setHeader("Authorization", "Bearer " +
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjkyOTU3NjUyNGM5MzFmYjg5ZDlkZmYiLCJpYXQiOjE2NTM3NzM2ODYsImV4cCI6MTY1Mzc3NTQ4NiwidHlwZSI6ImFjY2VzcyJ9.oCuopSsPfLwprVAgvHrEMVmqVfkxqUb8FJDTcY9_KQc")
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjkzMmJlNzM2NDk2ZTVkYTg2ZDFjZWMiLCJpYXQiOjE2NTM4MTIxOTksImV4cCI6MTY4NTM2OTc5OSwidHlwZSI6ImFjY2VzcyJ9._A6yqeEor5zRfurLr_nwk4jEEufRZkkjwVe9vJyqJSo")
                 .build();
 
         HttpResponse<String> response = client.send(request,
