@@ -1,6 +1,6 @@
 package pdg.models.chatwindow;
 
-import pdg.models.messages.User;
+import pdg.models.message.User;
 import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;

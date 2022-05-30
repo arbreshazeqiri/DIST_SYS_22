@@ -4,14 +4,14 @@ package pdg.models.chatwindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pdg.models.loginChat.LoginController;
-import pdg.models.messages.Message;
-import pdg.models.messages.MessageType;
-import pdg.models.messages.Status;
+import pdg.models.message.Message;
+import pdg.models.message.MessageType;
+import pdg.models.message.Status;
 
 import java.io.*;
 import java.net.Socket;
 
-import static pdg.models.messages.MessageType.CONNECTED;
+import static pdg.models.message.MessageType.CONNECTED;
 
 public class Listener implements Runnable{
 

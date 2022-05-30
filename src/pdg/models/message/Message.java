@@ -1,4 +1,4 @@
-package pdg.models.messages;
+package pdg.models.message;
 
 import java.io.Serializable;
 import java.util.ArrayList;

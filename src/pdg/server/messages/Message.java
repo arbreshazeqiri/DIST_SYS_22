@@ -1,4 +1,8 @@
-package com.messages;
+package pdg.server.messages;
+import pdg.models.message.MessageType;
+import pdg.models.message.Status;
+import pdg.models.message.User;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -95,3 +99,5 @@ public class Message implements Serializable {
         this.voiceMsg = voiceMsg;
     }
 }
+
+

@@ -1,4 +1,4 @@
-package pdg.models.messages.bubble;
+package pdg.models.message.bubble;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;

@@ -1,8 +1,8 @@
-package pdg.models.messages.bubble;
+package pdg.models.message.bubble;
 
 import javafx.scene.shape.*;
 
-public class Bubble extends Path{
+public class Bubble extends Path {
 
 
     public Bubble(BubbleSpec bubbleSpec) {
@@ -89,4 +89,5 @@ public class Bubble extends Path{
                 new LineTo(1.0f, 2.5f)
         );
     }
+}
 

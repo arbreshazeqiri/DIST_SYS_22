@@ -1,4 +1,4 @@
-package pdg.models.messages.bubble;
+package pdg.models.message.bubble;
 
 public enum BubbleSpec {
 

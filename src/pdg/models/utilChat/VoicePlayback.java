@@ -1,6 +1,6 @@
 package pdg.models.utilChat;
 
-import javax.sound.sampled.;
+import javax.sound.sampled.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +18,7 @@ public class VoicePlayback extends VoiceUtil {
             line.start();
 
             Runnable runner = new Runnable() {
-                int bufferSize = (int) format.getSampleRate() format.getFrameSize();
+                int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
                 byte buffer[] = new byte[bufferSize];
 
                 public void run() {

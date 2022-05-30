@@ -3,10 +3,10 @@ package pdg.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pdg.models.messages.Message;
-import pdg.models.messages.MessageType;
-import pdg.models.messages.Status;
-import pdg.models.messages.User;
+import pdg.models.message.Message;
+import pdg.models.message.MessageType;
+import pdg.models.message.Status;
+import pdg.models.message.User;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -15,8 +15,6 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
-import static pdg.models.messages.MessageType.*;
 
 public class Server {
 

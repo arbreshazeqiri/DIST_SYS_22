@@ -1,15 +1,13 @@
 package pdg.models.chatwindow;
 
-import pdg.App;
-import pdg.models.loginChat.MainLauncher;
 import pdg.models.utilChat.VoicePlayback;
 import pdg.models.utilChat.VoiceRecorder;
 import pdg.models.utilChat.VoiceUtil;
-import pdg.models.messages.Message;
-import pdg.models.messages.MessageType;
-import pdg.models.messages.User;
-import pdg.models.messages.bubble.BubbleSpec;
-import pdg.models.messages.bubble.BubbledLabel;
+import pdg.models.message.Message;
+import pdg.models.message.MessageType;
+import pdg.models.message.User;
+import pdg.models.message.bubble.BubbleSpec;
+import pdg.models.message.bubble.BubbledLabel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,9 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,7 +27,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
