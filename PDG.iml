@@ -23,18 +23,18 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.28" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="jdk-17.0" level="project" />
-    <orderEntry type="library" name="javafx1" level="project" />
-    <orderEntry type="library" name="com" level="project" />
     <orderEntry type="library" name="bin" level="project" />
-    <orderEntry type="library" name="apache-maven-3.8" level="project" />
-    <orderEntry type="library" name="apache-log4j-2.17" level="project" />
-    <orderEntry type="library" name="java-json.jar" level="project" />
-    <orderEntry type="library" name="java-json.jar1" level="project" />
-    <orderEntry type="library" name="jar_files" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="jdk-18.0.1" level="project" />
     <orderEntry type="library" name="json-20220320" level="project" />
+    <orderEntry type="library" name="apache-maven-3.8" level="project" />
+    <orderEntry type="library" name="controlsfx-8.40.10" level="project" />
+    <orderEntry type="library" name="slf4j-simple-1.5.6" level="project" />
+    <orderEntry type="library" name="flowless-0.4.5" level="project" />
+    <orderEntry type="library" name="richtextfx-0.6.10" level="project" />
+    <orderEntry type="library" name="wellbehavedfx-0.1.1" level="project" />
+    <orderEntry type="library" name="undofx-1.2" level="project" />
+    <orderEntry type="library" name="reactfx-2.0-M4u1" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.5.6" level="project" />
   </component>
 </module>

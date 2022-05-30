@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.User;
+import pdg.server.Server;
 import pdg.utils.SessionManager;
 
 import java.net.URI;

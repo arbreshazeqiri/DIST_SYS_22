@@ -1,5 +1,6 @@
 package pdg.controllers;
 
+import com.sun.media.jfxmedia.events.AudioSpectrumEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import pdg.components.AboutComponent;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.LangEnum;
+import pdg.server.Server;
 import pdg.utils.AppConfig;
 import pdg.utils.SessionManager;
 
@@ -27,6 +29,8 @@ public class MainController extends BaseController {
     public final static String LOG_IN_VIEW = "login";
     public final static String PRODUCT_LIST_VIEW = "product-list";
     public final static String WISHLIST_PRODUCT_LIST_VIEW = "wishlist-product-list";
+
+    public final static String LOGIN_CHAT_VIEW = "LoginChatView";
 
 
     private static final String VIEW_PATH = "../views";
@@ -74,6 +78,10 @@ public class MainController extends BaseController {
                 break;
             case LOG_IN_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(LOG_IN_VIEW)));
+                node = loader.load();
+                break;
+            case LOGIN_CHAT_VIEW:
+                loader.setLocation(getClass().getResource(viewPath(LOGIN_CHAT_VIEW)));
                 node = loader.load();
                 break;
             default:
@@ -137,7 +145,21 @@ public class MainController extends BaseController {
             e.printStackTrace();
         }
     }
+@FXML
+    public void OpenChat(ActionEvent actionEvent) {
+    try {
+//        Server server = new Server();
+//        server.main();
+        Parent root = FXMLLoader.load(getClass().getResource(viewPath("LoginChatView")));
+        Scene scene = new Scene(root);
 
+        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    } catch (Exception e) {
+    }
+    }
     @FXML
     private void onLogoutNavClick(ActionEvent event) {
         try {
@@ -297,5 +319,6 @@ public class MainController extends BaseController {
         }
 
     }
+
 
 }

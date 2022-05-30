@@ -140,6 +140,18 @@
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#OpenChat" style="-fx-background-color: #222222;">
+               <VBox.margin>
+                  <Insets top="390.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/chat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </VBox>
     </left>
