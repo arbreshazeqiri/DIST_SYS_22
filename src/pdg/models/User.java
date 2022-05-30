@@ -12,8 +12,9 @@ public class User {
     private String password;
     private String salt;
     private String country;
+    private String token;
 
-    public User(String id, String username, JSONArray wishlist, JSONArray cart, String fullname, String email, String country) {
+    public User(String id, String username, JSONArray wishlist, JSONArray cart, String fullname, String email, String country, String token) {
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -21,6 +22,7 @@ public class User {
         this.wishlist = wishlist;
         this.country = country;
         this.cart = cart;
+        this.token = token;
     }
 
     public User(String username, String fullname, String email, String password, String country) {
@@ -93,5 +95,8 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+    public String getToken () {
+        return token;
     }
 }

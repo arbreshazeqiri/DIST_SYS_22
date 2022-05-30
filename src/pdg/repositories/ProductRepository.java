@@ -21,7 +21,7 @@ public class ProductRepository {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:3000/v1/product"))
-                .setHeader("Authorization", "Bearer " + SessionManager.token)
+                .setHeader("Authorization", "Bearer " + SessionManager.user.getToken())
                 .build();
 
         HttpResponse<String> response = client.send(request,

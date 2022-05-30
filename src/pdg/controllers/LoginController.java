@@ -36,7 +36,6 @@ public class LoginController extends BaseController {
     @FXML
     private PasswordField password;
 
-    private static String url = "http://localhost:3000/v1/auth/login";
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) {
@@ -105,7 +104,10 @@ public class LoginController extends BaseController {
         String country = myjson.getString("country");
         JSONArray wishList = myjson.getJSONArray("wishlist");
         JSONArray cartList = myjson.getJSONArray("cart");
-        return new User(id, username, wishList, cartList, fullname, email, country);
+        JSONObject tokens = myjson1.getJSONObject("tokens");
+        JSONObject access = tokens.getJSONObject("access");
+        String token = access.getString("token");
+        return new User(id, username, wishList, cartList, fullname, email, country, token);
     }
 
 
