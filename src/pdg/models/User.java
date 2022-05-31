@@ -67,6 +67,10 @@ public class User {
 
     public JSONArray getWishlist() { return wishlist; }
 
+    public void setWishlist(String productId) {
+        wishlist.put(productId);
+    }
+
     public JSONArray getCart() { return cart; }
 
     public String getPassword() {

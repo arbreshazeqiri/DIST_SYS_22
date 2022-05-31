@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class WishListController extends ChildController {
+public class CartController extends ChildController {
 
     @FXML
     private FlowPane productsPane;
@@ -26,12 +26,12 @@ public class WishListController extends ChildController {
         }
     }
 
-    public void showProducts() throws Exception {
+    private void showProducts() throws Exception {
         productsPane.getChildren().clear();
         List<Product> products = WishlistRepository.getAll();
         ProductCardComponent productCard = new ProductCardComponent();
         for (Product product: products) {
-            productsPane.getChildren().add(productCard.getContent(product,  e -> addProductToWishlist(product), e -> addProductToCart(product)));
+            productsPane.getChildren().add(productCard.getContent(product, e -> addProductToWishlist(product), e -> addProductToCart(product)));
         }
     }
 

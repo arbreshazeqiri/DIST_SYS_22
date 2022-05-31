@@ -1,6 +1,5 @@
 package pdg.controllers;
 
-import com.sun.media.jfxmedia.events.AudioSpectrumEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.stage.Stage;
 import pdg.components.AboutComponent;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.LangEnum;
-import pdg.server.Server;
 import pdg.utils.AppConfig;
 import pdg.utils.SessionManager;
 
@@ -28,7 +26,9 @@ public class MainController extends BaseController {
     public final static String PROFILE_VIEW = "profile";
     public final static String LOG_IN_VIEW = "login";
     public final static String PRODUCT_LIST_VIEW = "product-list";
+    public final static String PRODUCT_DETAILS_VIEW = "product-details";
     public final static String WISHLIST_PRODUCT_LIST_VIEW = "wishlist-product-list";
+    public final static String CART_PRODUCT_LIST_VIEW = "cart-product-list";
 
     public final static String LOGIN_CHAT_VIEW = "LoginChatView";
 
@@ -68,8 +68,16 @@ public class MainController extends BaseController {
                 loader.setLocation(getClass().getResource(viewPath(PRODUCT_LIST_VIEW)));
                 node = loader.load();
                 break;
+            case PRODUCT_DETAILS_VIEW:
+                loader.setLocation(getClass().getResource(viewPath(PRODUCT_DETAILS_VIEW)));
+                node = loader.load();
+                break;
             case WISHLIST_PRODUCT_LIST_VIEW:
                 loader.setLocation((getClass().getResource(viewPath(WISHLIST_PRODUCT_LIST_VIEW))));
+                node = loader.load();
+                break;
+            case CART_PRODUCT_LIST_VIEW:
+                loader.setLocation((getClass().getResource(viewPath(CART_PRODUCT_LIST_VIEW))));
                 node = loader.load();
                 break;
             case PROFILE_VIEW:
@@ -103,7 +111,13 @@ public class MainController extends BaseController {
             case PRODUCT_LIST_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
+            case PRODUCT_DETAILS_VIEW:
+                contentPane.setAlignment(Pos.CENTER);
+                break;
             case WISHLIST_PRODUCT_LIST_VIEW:
+                contentPane.setAlignment(Pos.CENTER);
+                break;
+            case CART_PRODUCT_LIST_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
             case LOG_IN_VIEW:
@@ -212,6 +226,15 @@ public class MainController extends BaseController {
     private void onWishlistBtnClick(ActionEvent event){
         try{
             this.loadView(WISHLIST_PRODUCT_LIST_VIEW);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onCartBtnClick(ActionEvent event){
+        try{
+            this.loadView(CART_PRODUCT_LIST_VIEW);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -66,20 +66,20 @@
             <children>
                 <Button fx:id="wishlistButton" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-max-width: 30px; -fx-alignment: center; -fx-background-color: white;" styleClass="btn-green" GridPane.hgrow="ALWAYS">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="wishlistIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/images/fullheart.png" />
+                        <Image url="@../../resources/images/heart.png" />
                      </image>
                   </ImageView>
                </graphic>
                <GridPane.margin>
                   <Insets left="38.0" />
                </GridPane.margin></Button>
-                <Button fx:id="cartButton" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onCartButtonClick" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                <Button fx:id="cartButton" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/images/fullbag.png" />
+                        <Image url="@../../resources/images/bag.png" />
                      </image>
                   </ImageView>
                </graphic></Button>

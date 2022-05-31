@@ -40,7 +40,6 @@ public class WishlistRepository {
 
     public static Product parseResLine(String res) {
         JSONObject myjson = new JSONObject(res);
-        System.out.println(myjson);
         String id = myjson.getString("id");
         String title = myjson.getString("title");
         String description = myjson.getString("description");

@@ -33,7 +33,7 @@ public class ProductRepository {
         JSONObject myjson1 = new JSONObject(res);
         JSONArray myjson = myjson1.getJSONArray("results");
         List<Product> list = new ArrayList<>();
-        for(int i=0; i<myjson.length(); i++){
+        for (int i = 0; i < myjson.length(); i++) {
             list.add(parseResLine(myjson.getJSONObject(i).toString()));
         }
         return list;
@@ -48,5 +48,20 @@ public class ProductRepository {
         String price = myjson.getString("price");
         String qty = myjson.getString("quantity");
         return new Product(id, title, description, image, price, qty);
+    }
+
+    public static void addProductToWishlist(String productId) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:3000/v1/users/" + SessionManager.user.getId() + "/products/" + productId + "/wishlist"))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(""))
+                    .setHeader("Authorization", "Bearer " + SessionManager.user.getToken())
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
