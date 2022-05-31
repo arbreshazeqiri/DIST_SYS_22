@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class WishListController extends ChildController {
+public class WishlistController extends ChildController {
 
     @FXML
     private FlowPane productsPane;
@@ -35,10 +35,21 @@ public class WishListController extends ChildController {
         }
     }
 
-    private void addProductToCart(Product product) {
+    private void addProductToWishlist(Product product) {
+        try {
+            WishlistRepository.addProductToWishlist(product.getId());
+            showProducts();
+        } catch (Exception e) {
+            ErrorPopupComponent.show(String.valueOf(e));
+        }
     }
 
-    private void addProductToWishlist(Product product) {
+    private void addProductToCart(Product product) {
+        try {WishlistRepository.addProductToCart(product.getId());
+            showProducts();
+        } catch (Exception e) {
+            ErrorPopupComponent.show(String.valueOf(e));
+        }
     }
 
     @Override

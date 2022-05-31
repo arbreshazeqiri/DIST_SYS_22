@@ -1,9 +1,7 @@
 package pdg.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import pdg.components.ErrorPopupComponent;
 import pdg.components.ProductCardComponent;
 import pdg.models.Product;
@@ -35,21 +33,6 @@ public class ProductListController extends ChildController {
         for (Product product : products) {
             productsPane.getChildren()
                     .add(productCard.getContent(product, e -> addProductToWishlist(product), e -> addProductToCart(product)));
-        }
-    }
-
-    private void showProduct(Product product) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../views/" + MainController.PRODUCT_DETAILS_VIEW + ".fxml"));
-
-            Pane pane = loader.load();
-            ProductDetailsController controller = loader.getController();
-            controller.setModel(product);
-
-            parentController.loadView(MainController.PRODUCT_DETAILS_VIEW, pane, controller);
-        } catch (Exception e) {
-            ErrorPopupComponent.show(String.valueOf(e));
         }
     }
 

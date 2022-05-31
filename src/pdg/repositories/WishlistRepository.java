@@ -49,4 +49,36 @@ public class WishlistRepository {
         String qty = myjson.getString("quantity");
         return new Product(id, title, description, image, price, qty);
     }
+
+    public static void addProductToWishlist(String productId) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:3000/v1/users/" + SessionManager.user.getId() + "/products/" + productId + "/wishlist"))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(""))
+                    .setHeader("Authorization", "Bearer " + SessionManager.user.getToken())
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            SessionManager.user.setWishlist(SessionManager.user.getWishlist());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addProductToCart(String productId) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:3000/v1/users/" + SessionManager.user.getId() + "/products/" + productId + "/cart"))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(""))
+                    .setHeader("Authorization", "Bearer " + SessionManager.user.getToken())
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            SessionManager.user.setCart(SessionManager.user.getCart());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

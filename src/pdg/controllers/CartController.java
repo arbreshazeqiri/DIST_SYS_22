@@ -35,10 +35,21 @@ public class CartController extends ChildController {
         }
     }
 
-    private void addProductToCart(Product product) {
+    private void addProductToWishlist(Product product) {
+        try {
+            CartRepository.addProductToWishlist(product.getId());
+            showProducts();
+        } catch (Exception e) {
+            ErrorPopupComponent.show(String.valueOf(e));
+        }
     }
 
-    private void addProductToWishlist(Product product) {
+    private void addProductToCart(Product product) {
+        try {CartRepository.addProductToCart(product.getId());
+            showProducts();
+        } catch (Exception e) {
+            ErrorPopupComponent.show(String.valueOf(e));
+        }
     }
 
     @Override
