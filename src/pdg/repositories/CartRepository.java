@@ -12,18 +12,17 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WishlistRepository {
+public class CartRepository {
     public static int count() throws Exception {
         return getAll().size();
     }
 
     public static List<Product> getAll() throws Exception {
-        JSONArray wishList = SessionManager.user.getWishlist();
+        JSONArray cart = SessionManager.user.getCart();
         List<Product> list = new ArrayList<>();
-        for (int i = 0; i < wishList.length(); i++) {
-            list.add(getProductById(wishList.getString(i)));
+        for (int i = 0; i < cart.length(); i++) {
+            list.add(getProductById(cart.getString(i)));
         }
-        System.out.println(wishList);
         return list;
     }
 

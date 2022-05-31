@@ -36,26 +36,42 @@
                                 <Font size="25.0" />
                             </font></Label>
                         <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#OpenChat" style="-fx-background-color: -fx-dark-gray;">
+                     <graphic>
+                        <Label prefHeight="35.0" prefWidth="73.0" style="-fx-color: white;" text="Chat" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onWishlistBtnClick" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@../resources/images/chat.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </graphic>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#onWishlistBtnClick" style="-fx-background-color: -fx-dark-gray;">
                      <graphic>
                         <Label text="Wishlist">
                            <graphic>
                               <ImageView fx:id="heart" fitHeight="40.0" fitWidth="50.0" onMouseClicked="#onWishlistBtnClick" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/heart.png" />
+                                    <Image url="@../resources/images/greenheart.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Label>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: -fx-dark-gray;">
+                  <Button mnemonicParsing="false" onAction="#onCartBtnClick" style="-fx-background-color: -fx-dark-gray;">
                      <graphic>
                         <Label text="Shopping cart">
                            <graphic>
-                              <ImageView fx:id="bag" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/bag.png" />
+                                    <Image url="@../resources/images/greenbag.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -118,7 +134,7 @@
         </VBox>
     </top>
     <left>
-        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="side-nav" BorderPane.alignment="CENTER">
+        <VBox prefHeight="564.0" prefWidth="51.0" styleClass="side-nav" BorderPane.alignment="CENTER">
             <children>
                 <HBox prefHeight="22.0" prefWidth="182.0">
                     <children>
@@ -128,7 +144,7 @@
                      </HBox.margin></Label>
                     </children>
                 </HBox>
-                <Button fx:id="msLead" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onProductsNavClick" styleClass="nav-link" text="Products">
+                <Button fx:id="msLead" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="62.0" mnemonicParsing="false" onAction="#onProductsNavClick" prefHeight="32.0" prefWidth="62.0" styleClass="nav-link" text="Products">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin></Button>
@@ -140,25 +156,13 @@
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#OpenChat" style="-fx-background-color: #222222;">
-               <VBox.margin>
-                  <Insets top="390.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/images/chat.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             </children>
         </VBox>
     </left>
     <bottom>
         <HBox styleClass="status-bar" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="loggedInUserLabel" text="Label">
+                <Label fx:id="loggedInUserLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Label">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin></Label>

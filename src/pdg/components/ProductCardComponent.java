@@ -19,7 +19,6 @@ public class ProductCardComponent {
         controller.setProduct(product);
         controller.setOnWishlistAction(wishlistHandler);
         controller.setOnCartAction(cartHandler);
-
         return node;
     }
 

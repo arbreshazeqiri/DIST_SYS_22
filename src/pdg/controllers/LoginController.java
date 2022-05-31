@@ -16,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import pdg.components.ErrorPopupComponent;
 import pdg.models.User;
-import pdg.server.Server;
 import pdg.utils.SessionManager;
 
 import java.net.URI;
@@ -57,6 +56,7 @@ public class LoginController extends BaseController {
             if (user != null) {
                 FXMLLoader loader = new FXMLLoader();
                 SessionManager.user = user;
+                user.setPassword(password.getText());
                 loader.setLocation(getClass().getResource("../views/main-screen.fxml"));
                 Parent root = loader.load();
                 MainController controller = loader.getController();

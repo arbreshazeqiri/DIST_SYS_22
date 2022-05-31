@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.json.JSONArray;
 import pdg.models.Product;
 import pdg.utils.SessionManager;
 
@@ -32,13 +31,16 @@ public class ProductCardController implements Initializable {
     private ImageView fotoja;
     @FXML
     private ImageView wishlistIcon;
+    @FXML
+    private ImageView cartIcon;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     }
+
     String address = "src/pdg/resources/images/";
 
-    public void setProduct(Product product){
+    public void setProduct(Product product) throws Exception {
         nameLabel.setText(product.getDescription());
         priceLabel.setText(product.getPrice() + "€");
         address = address.concat(product.getImage()).concat(".jpg");
@@ -47,17 +49,23 @@ public class ProductCardController implements Initializable {
         stockLabel.setText("STOCK: " + product.getQty());
 
         File fo;
-        JSONArray wishlist = SessionManager.user.getWishlist();
-        if(wishlist.toString().contains(product.getId())){
+        if (SessionManager.user.getWishlist().toString().contains(product.getId())) {
             fo = new File("src/pdg/resources/images/fullheart.png");
-        }
-        else{
+        } else {
             fo = new File("src/pdg/resources/images/heart.png");
         }
         wishlistIcon.setImage(new Image(fo.toURI().toString()));
+
+        File fot;
+        if (SessionManager.user.getCart().toString().contains(product.getId())) {
+            fot = new File("src/pdg/resources/images/fullbag.png");
+        } else {
+            fot = new File("src/pdg/resources/images/bag.png");
+        }
+        cartIcon.setImage(new Image(fot.toURI().toString()));
     }
 
-//
+    //
     public void setOnWishlistAction(EventHandler<ActionEvent> handler) {
         this.wishlistButton.setOnAction(handler);
     }
@@ -65,5 +73,4 @@ public class ProductCardController implements Initializable {
     public void setOnCartAction(EventHandler<ActionEvent> handler) {
         this.cartButton.setOnAction(handler);
     }
-
 }

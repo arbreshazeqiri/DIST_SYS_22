@@ -5,7 +5,7 @@ import javafx.scene.layout.FlowPane;
 import pdg.components.ErrorPopupComponent;
 import pdg.components.ProductCardComponent;
 import pdg.models.Product;
-import pdg.repositories.WishlistRepository;
+import pdg.repositories.CartRepository;
 
 import java.net.URL;
 import java.util.List;
@@ -28,7 +28,7 @@ public class CartController extends ChildController {
 
     private void showProducts() throws Exception {
         productsPane.getChildren().clear();
-        List<Product> products = WishlistRepository.getAll();
+        List<Product> products = CartRepository.getAll();
         ProductCardComponent productCard = new ProductCardComponent();
         for (Product product: products) {
             productsPane.getChildren().add(productCard.getContent(product, e -> addProductToWishlist(product), e -> addProductToCart(product)));

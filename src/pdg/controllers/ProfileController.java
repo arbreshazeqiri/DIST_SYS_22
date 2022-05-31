@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import pdg.utils.SessionManager;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,7 +24,13 @@ public class ProfileController extends ChildController {
         usernameLabel.setText(SessionManager.user.getUsername());
         fullnameLabel.setText(SessionManager.user.getFullName().toUpperCase());
         emailLabel.setText(SessionManager.user.getEmail());
-        winsLabel.setText(String.valueOf(SessionManager.user.getWishlist().length()));
+        try {
+            winsLabel.setText(String.valueOf(SessionManager.user.getWishlist().length()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         File f;
         if(SessionManager.user.getCountry().equals("Kosovo")){
             f = new File("src/pdg/resources/images/Kosovo.png");
@@ -32,6 +39,13 @@ public class ProfileController extends ChildController {
             f = new File("src/pdg/resources/images/Albania.png");
         }
         countryImage.setImage(new Image(f.toURI().toString()));
+        try {
+            scoreLabel.setText(String.valueOf(SessionManager.user.getCart().length()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
