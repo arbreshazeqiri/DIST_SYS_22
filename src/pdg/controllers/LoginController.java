@@ -120,7 +120,6 @@ public class LoginController extends BaseController {
             Pane root = loader.load();
             SignupController controller = loader.getController();
             controller.setView2(controller.SIGN_UP_VIEW);
-
             Scene scene = new Scene(root);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(scene);

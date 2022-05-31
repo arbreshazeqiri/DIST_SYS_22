@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Label?>
@@ -49,6 +50,9 @@
                            <padding>
                               <Insets left="5.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </graphic>
                   </Button>
@@ -62,6 +66,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </graphic>
                   </Button>
@@ -75,8 +82,23 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </graphic>
+                  </Button>
+                  <Button fx:id="CheckoutBtn" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#onCheckoutBtnClick" style="-fx-background-color: transparent;" text="Checkout">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/cart.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                         <SplitMenuButton fx:id="msLang" mnemonicParsing="false" text="Lang">
                             <items>
@@ -86,6 +108,9 @@
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </SplitMenuButton>
                     </children>
                     <padding>
@@ -104,15 +129,6 @@
                                 <MenuItem fx:id="onExitMenuClick" mnemonicParsing="false" onAction="#onExitMenuClick" text="Close">
                                     <accelerator>
                                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                                    </accelerator>
-                                </MenuItem>
-                            </items>
-                        </Menu>
-                        <Menu fx:id="newGameButt" mnemonicParsing="false" text="Insert">
-                            <items>
-                                <MenuItem fx:id="onNewGameButton" mnemonicParsing="false" text="Insert products">
-                                    <accelerator>
-                                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                     </accelerator>
                                 </MenuItem>
                             </items>
@@ -147,15 +163,24 @@
                 <Button fx:id="msLead" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="62.0" mnemonicParsing="false" onAction="#onProductsNavClick" prefHeight="32.0" prefWidth="62.0" styleClass="nav-link" text="Products">
                <VBox.margin>
                   <Insets left="5.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
                 <Button fx:id="msProf" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onProfileNavClick" styleClass="nav-link" text="Profile">
                <VBox.margin>
                   <Insets left="5.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
                 <Button fx:id="logOutButt" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="120.0" mnemonicParsing="false" onAction="#onLogoutNavClick" styleClass="nav-link" text="Logout">
                <VBox.margin>
                   <Insets left="5.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             </children>
         </VBox>
     </left>
@@ -184,12 +209,14 @@
                     </padding>
                     <children>
                         <Label fx:id="sectionTit" text="" />
+                  <Label fx:id="screenName" prefHeight="18.0" prefWidth="208.0" text="Label" />
                     </children>
                 </HBox>
                 <VBox fx:id="contentPane" prefHeight="486.0" prefWidth="820.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
-               </VBox.margin></VBox>
+               </VBox.margin>
+            </VBox>
             </children>
         </VBox>
     </center>

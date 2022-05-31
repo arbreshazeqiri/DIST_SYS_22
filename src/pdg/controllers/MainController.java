@@ -29,9 +29,8 @@ public class MainController extends BaseController {
     public final static String PRODUCT_DETAILS_VIEW = "product-details";
     public final static String WISHLIST_PRODUCT_LIST_VIEW = "wishlist-product-list";
     public final static String CART_PRODUCT_LIST_VIEW = "cart-product-list";
-
+    public final static String CHECKOUT_VIEW = "checkout";
     public final static String LOGIN_CHAT_VIEW = "LoginChatView";
-
 
     private static final String VIEW_PATH = "../views";
 
@@ -46,6 +45,12 @@ public class MainController extends BaseController {
 
     @FXML
     CheckMenuItem alMenuItem;
+
+    @FXML
+    private Button checkoutBtn;
+
+    @FXML
+    private Label screenName;
 
     public boolean enSelected;
 
@@ -67,22 +72,27 @@ public class MainController extends BaseController {
             case PRODUCT_LIST_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(PRODUCT_LIST_VIEW)));
                 node = loader.load();
-                break;
-            case PRODUCT_DETAILS_VIEW:
-                loader.setLocation(getClass().getResource(viewPath(PRODUCT_DETAILS_VIEW)));
-                node = loader.load();
+                screenName.setText("Available products");
                 break;
             case WISHLIST_PRODUCT_LIST_VIEW:
                 loader.setLocation((getClass().getResource(viewPath(WISHLIST_PRODUCT_LIST_VIEW))));
                 node = loader.load();
+                screenName.setText("Wishlist items");
                 break;
             case CART_PRODUCT_LIST_VIEW:
                 loader.setLocation((getClass().getResource(viewPath(CART_PRODUCT_LIST_VIEW))));
                 node = loader.load();
+                screenName.setText("Cart items");
+                break;
+            case CHECKOUT_VIEW:
+                loader.setLocation((getClass().getResource(viewPath(CHECKOUT_VIEW))));
+                node = loader.load();
+                screenName.setText("Checkout");
                 break;
             case PROFILE_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(PROFILE_VIEW)));
                 node = loader.load();
+                screenName.setText("Profile");
                 break;
             case LOG_IN_VIEW:
                 loader.setLocation(getClass().getResource(viewPath(LOG_IN_VIEW)));
@@ -120,6 +130,9 @@ public class MainController extends BaseController {
             case CART_PRODUCT_LIST_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
+            case CHECKOUT_VIEW:
+                contentPane.setAlignment(Pos.CENTER);
+                break;
             case LOG_IN_VIEW:
                 contentPane.setAlignment(Pos.CENTER);
                 break;
@@ -132,15 +145,6 @@ public class MainController extends BaseController {
         ResourceBundle langBundle = getLangBundle();
         controller.loadLangTexts(langBundle);
     }
-//
-//    @FXML
-//    private void onProductsNavClick(ActionEvent event) {
-//        try {
-//            this.loadView(PRODUCT_LIST_VIEW);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @FXML
     private void onProfileNavClick(ActionEvent event) {
@@ -186,7 +190,6 @@ public class MainController extends BaseController {
 
         }
     }
-
 
     @FXML
     private void onLogoutMenuClick(ActionEvent event) {
@@ -241,6 +244,15 @@ public class MainController extends BaseController {
     }
 
     @FXML
+    public void onCheckoutBtnClick(ActionEvent event) throws Exception {
+        try{
+            this.loadView(CHECKOUT_VIEW);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void onAlMenuItemCLick(ActionEvent ev) {
         enMenuItem.setSelected(false);
         alMenuItem.setSelected(true);
@@ -282,11 +294,7 @@ public class MainController extends BaseController {
     @FXML
     private MenuItem onExitMenuClick;
     @FXML
-    private MenuItem onNewGameButton;
-    @FXML
     private MenuItem onAboutButton;
-    @FXML
-    private Menu newGameButt;
     @FXML
     private Menu helpButt;
     @FXML
@@ -309,14 +317,12 @@ public class MainController extends BaseController {
             String msLangu = langBundle.getString("ms_lang");
             String logOutButton = langBundle.getString("log_out_button");
             String closeButton = langBundle.getString("close_button");
-            String newGameButton = langBundle.getString("new_game_button");
             String helpButton = langBundle.getString("help_button");
             String navigation = langBundle.getString("navigation");
             String msLeaderboard = langBundle.getString("ms_leaderboard");
             String msProfile = langBundle.getString("ms_profile");
             String logoutButton = langBundle.getString("log_out_button");
             String aboutButton = langBundle.getString("about");
-            String anewGameButton = langBundle.getString("anew_game_button");
             String file = langBundle.getString("file_button");
 
 
@@ -324,13 +330,11 @@ public class MainController extends BaseController {
             logOutButt.setText(logOutButton);
             onExitMenuClick.setText(closeButton);
             onLogoutMenuClick.setText(logoutButton);
-            newGameButt.setText(newGameButton);
             helpButt.setText(helpButton);
             nav.setText(navigation);
             msLead.setText(msLeaderboard);
             msProf.setText(msProfile);
             onAboutButton.setText(aboutButton);
-            onNewGameButton.setText(anewGameButton);
             fileButt.setText(file);
 
 

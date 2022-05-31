@@ -23,7 +23,6 @@ public class WishlistRepository {
         for (int i = 0; i < wishList.length(); i++) {
             list.add(getProductById(wishList.getString(i)));
         }
-        System.out.println(wishList);
         return list;
     }
 

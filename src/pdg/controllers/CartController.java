@@ -56,4 +56,5 @@ public class CartController extends ChildController {
     public void loadLangTexts(ResourceBundle langBundle) {
         // TODO Auto-generated method stub
     }
+
 }
