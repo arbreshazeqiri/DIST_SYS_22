@@ -1,37 +1,32 @@
 package pdg.groupchat.Client;
-import javafx.event.ActionEvent;
-import javafx.scene.input.KeyEvent;
+
+import animatefx.animation.FadeIn;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.geometry.NodeOrientation;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javax.imageio.ImageIO;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import java.io.IOException;
-
-
-import animatefx.animation.FadeIn;
 
 import static pdg.groupchat.Client.Controller.users;
 
@@ -202,16 +197,7 @@ public class Room extends Thread implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showProPic.setStroke(Color.valueOf("#90a4ae"));
-        Image image;
-        if(Controller.gender.equalsIgnoreCase("Male")) {
-            image = new Image(getClass().getResource("user.png").toExternalForm());
-        } else {
-            image = new Image(getClass().getResource("female.png").toExternalForm());
-            proImage.setImage(image);
-        }
-        showProPic.setFill(new ImagePattern(image));
-        clientName.setText(Controller.username);
+        clientName.setText(Controller.username + "'s groupchat");
         connectSocket();
     }
 }

@@ -109,7 +109,8 @@ public class MainController extends BaseController {
         ChildController controller = loader.getController();
         loadView(screen, node, controller);
     }
-    public void loadView(String screen, Parent pane, ChildController controller) throws Exception{
+
+    public void loadView(String screen, Parent pane, ChildController controller) throws Exception {
         controller.setParentController(this);
         this.childController = controller;
 
@@ -156,28 +157,27 @@ public class MainController extends BaseController {
     }
 
     @FXML
-    private void onProductsNavClick(ActionEvent event){
-        try{
+    private void onProductsNavClick(ActionEvent event) {
+        try {
             this.loadView(PRODUCT_LIST_VIEW);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-@FXML
-    public void OpenChat(ActionEvent actionEvent) {
-    try {
-//        Server server = new Server();
-//        server.main();
-        Parent root = FXMLLoader.load(getClass().getResource(viewPath("LoginChatView")));
-        Scene scene = new Scene(root);
 
-        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    @FXML
+    public void OpenChat(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(viewPath("serverChat/sample.fxml")));
+            Scene scene = new Scene(root);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
-    } catch (Exception e) {
+        } catch (Exception e) {
+        }
     }
-    }
+
     @FXML
     private void onLogoutNavClick(ActionEvent event) {
         try {
@@ -226,28 +226,28 @@ public class MainController extends BaseController {
     }
 
     @FXML
-    private void onWishlistBtnClick(ActionEvent event){
-        try{
+    private void onWishlistBtnClick(ActionEvent event) {
+        try {
             this.loadView(WISHLIST_PRODUCT_LIST_VIEW);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void onCartBtnClick(ActionEvent event){
-        try{
+    private void onCartBtnClick(ActionEvent event) {
+        try {
             this.loadView(CART_PRODUCT_LIST_VIEW);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
     public void onCheckoutBtnClick(ActionEvent event) throws Exception {
-        try{
+        try {
             this.loadView(CHECKOUT_VIEW);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
