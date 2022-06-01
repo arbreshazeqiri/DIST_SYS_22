@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,7 +31,7 @@ public class MainController extends BaseController {
     public final static String WISHLIST_PRODUCT_LIST_VIEW = "wishlist-product-list";
     public final static String CART_PRODUCT_LIST_VIEW = "cart-product-list";
     public final static String CHECKOUT_VIEW = "checkout";
-    public final static String LOGIN_CHAT_VIEW = "LoginChatView";
+    public final static String CHAT_VIEW = "../chatclient/sample.fxml";
 
     private static final String VIEW_PATH = "../views";
 
@@ -45,9 +46,6 @@ public class MainController extends BaseController {
 
     @FXML
     CheckMenuItem alMenuItem;
-
-    @FXML
-    private Button checkoutBtn;
 
     @FXML
     private Label screenName;
@@ -98,8 +96,8 @@ public class MainController extends BaseController {
                 loader.setLocation(getClass().getResource(viewPath(LOG_IN_VIEW)));
                 node = loader.load();
                 break;
-            case LOGIN_CHAT_VIEW:
-                loader.setLocation(getClass().getResource(viewPath(LOGIN_CHAT_VIEW)));
+            case CHAT_VIEW:
+                loader.setLocation(getClass().getResource("../chatclient/sample.fxml"));
                 node = loader.load();
                 break;
             default:
@@ -140,6 +138,9 @@ public class MainController extends BaseController {
             case PROFILE_VIEW:
                 contentPane.setAlignment(Pos.TOP_LEFT);
                 break;
+            case CHAT_VIEW:
+                contentPane.setAlignment(Pos.CENTER);
+                break;
             default:
                 throw new Exception("ERR_SCREEN_NOT_FOUND");
         }
@@ -168,12 +169,13 @@ public class MainController extends BaseController {
     @FXML
     public void OpenChat(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(viewPath("serverChat/sample.fxml")));
-            Scene scene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            primaryStage.setScene(scene);
+            Parent root = FXMLLoader.load(getClass().getResource("../chatclient/sample.fxml"));
+            Image image = new Image("pdg/resources/images/chat.png");
+            Stage primaryStage = new Stage();
+            primaryStage.getIcons().add(image);
+            primaryStage.setTitle("CLIENT");
+            primaryStage.setScene(new Scene(root,  600, 500));
             primaryStage.show();
-
         } catch (Exception e) {
         }
     }

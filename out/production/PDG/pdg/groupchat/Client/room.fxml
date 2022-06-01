@@ -88,7 +88,7 @@
                                         <Image url="@../../resources/images/send.png" />
                                     </image>
                                 </ImageView>
-                                <TextField fx:id="msgField" layoutX="14.0" layoutY="13.0" onKeyPressed="#sendMessageByKey" prefHeight="34.0" prefWidth="266.0" promptText="What's on your mind?" style="-fx-background-color: whitesmoke;" styleClass="msgBox" stylesheets="@../CSS/style.css">
+                                <TextField fx:id="msgField" layoutX="14.0" layoutY="13.0" onKeyPressed="#sendMessageByKey" prefHeight="34.0" prefWidth="266.0" promptText="What's on your mind?" style="-fx-background-color: whitesmoke; -fx-text-fill: gray;" styleClass="msgBox" stylesheets="@../CSS/style.css">
                                     <font>
                                         <Font name="Arial" size="19.0" />
                                     </font>
