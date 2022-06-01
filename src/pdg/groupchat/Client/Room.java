@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -204,9 +205,9 @@ public class Room extends Thread implements Initializable {
         showProPic.setStroke(Color.valueOf("#90a4ae"));
         Image image;
         if(Controller.gender.equalsIgnoreCase("Male")) {
-            image = new Image("user.png", false);
+            image = new Image(getClass().getResource("user.png").toExternalForm());
         } else {
-            image = new Image("female.png", false);
+            image = new Image(getClass().getResource("female.png").toExternalForm());
             proImage.setImage(image);
         }
         showProPic.setFill(new ImagePattern(image));
