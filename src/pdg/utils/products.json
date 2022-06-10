@@ -1,0 +1,221 @@
+[{
+  "_id": {
+    "$oid": "6293ab87b8791022f4c323f3"
+  },
+  "title": "Sunglasses",
+  "description": "Sunglasses",
+  "image": "sunglasses",
+  "price": "12.29",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844871936"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844871936"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293ab97b8791022f4c323f5"
+  },
+  "title": "Gold sandals",
+  "description": "Gold sandals",
+  "image": "goldsandals",
+  "price": "25.69",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844887992"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844887992"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293ab9fb8791022f4c323f7"
+  },
+  "title": "Summer cap",
+  "description": "Summer cap",
+  "image": "summercap",
+  "price": "4",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844895273"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844895273"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293aba4b8791022f4c323f9"
+  },
+  "title": "Winter cap",
+  "description": "Winter cap",
+  "image": "wintercap",
+  "price": "5",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844900833"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844900833"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293ababb8791022f4c323fb"
+  },
+  "title": "Beach bag",
+  "description": "Beach bag",
+  "image": "beachbag",
+  "price": "17",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844907039"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844907039"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293abb0b8791022f4c323fd"
+  },
+  "title": "Black denim skirt",
+  "description": "Black denim skirt",
+  "image": "blackdenimskirt",
+  "price": "26",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844912187"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844912187"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293abb5b8791022f4c323ff"
+  },
+  "title": "Pink croshet top",
+  "description": "Pink croshet top",
+  "image": "pinkcroshettop",
+  "price": "15",
+  "quantity": "3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844917675"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844917675"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293abbbb8791022f4c32401"
+  },
+  "title": "Pink vans",
+  "description": "Pink vans",
+  "image": "pinkvans",
+  "price": "62.5",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844923888"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844923888"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293abc0b8791022f4c32403"
+  },
+  "title": "Denim overalls",
+  "description": "Denim overalls",
+  "image": "overalls",
+  "price": "81",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844928942"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844928942"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293abc5b8791022f4c32405"
+  },
+  "title": "Black tee",
+  "description": "Black tee",
+  "image": "blacktee",
+  "price": "13.5",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844933576"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844933576"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6293abccb8791022f4c32407"
+  },
+  "title": "Tote bag",
+  "description": "Tote bag 'Brooklyn'",
+  "image": "tote",
+  "price": "22.29",
+  "quantity": "1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653844940028"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653844940028"
+    }
+  },
+  "__v": 0
+}]
